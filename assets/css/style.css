@@ -1,6 +1,7 @@
 .logo-image {
-  width: 200px; /* Adjust the width to your desired size */
+  width: 250px; /* Adjust the width to your desired size */
   height: auto; /* Maintain the aspect ratio */
+  margin-left: 0;
 }
 
 .navbar {
@@ -8,11 +9,23 @@
   background-color: white; /* temporary */
 }
 
+.navbar-nav > li {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .jumbotron {
-  background-image: url("https://hitechinstruments.us/wp-content/uploads/2022/02/273004087_103162562285990_6524182753608193972_n-1.jpg");
+  background-image: url("https://cdn.discordapp.com/attachments/987016731476258906/1120400761084465336/jumbotron-image.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
-  opacity: 50%;
+}
+
+/* opacity makes it so you have a fadish cover over your element. So you can't alter the opacity of the child, without effecting opacity of parent*/
+
+button.hamburger {
+  background-color: #005c87;
+  border-radius: 20px;
+  padding: 0px 10px;
 }
 
 .hamburger {
@@ -36,7 +49,7 @@
   display: block;
   width: 100%;
   height: 5px;
-  background-color: black;
+  background-color: white;
   margin: 6px 0px;
   transition: 0.4s; /* takes 0.4s for hamburger before & after to transform*/
 }
@@ -48,7 +61,7 @@
 
 .hamburger.is-active:after {
   /* animation */
-  transform: rotate(45deg) translate(-9px, -8px);
+  transform: rotate(45deg) translate(-9.5px, -8px);
 }
 
 .hamburger.is-active .bar {
@@ -94,8 +107,47 @@
   background-color: darkred;
 }
 
-@media (min-width: 768px) {
-  /* applied when viewport is equal or greater than 768 pixels */
+.main-link {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+.read-more-btn {
+  background-color: #005c87;
+}
+
+.vr {
+  width: 1px;
+  border-right: 2px solid gray;
+}
+
+.box p {
+  display: none; /* don't display when width <= 992*/
+}
+
+.mobile-box p {
+  display: none; /* mobile box display none when width >= 992*/
+}
+
+.products-intro {
+  display: none;
+}
+
+.mobile-products-intro {
+  display: none;
+}
+
+.products-intro img {
+  width: 100vw;
+}
+
+.mobile-products-intro img {
+  width: 100vw;
+  border: 0.5px solid lightgray;
+}
+
+@media (min-width: 992px) {
   .mobile-nav {
     display: none;
   }
@@ -103,31 +155,144 @@
   .hamburger {
     display: none;
   }
-}
 
-.main-link {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-@media (min-width: 600px) {
   .box {
-    position: absolute;
+    position: relative;
+    width: 55%;
+    top: 180px;
     background-color: #005c87;
-    left: 400px;
-    width: 800px;
-    height: 200px;
-    border: 20px solid white;
+    border: 15px solid white;
     text-align: center;
-    padding: 100px;
   }
 
   .box p {
+    display: block; /* display when width <= 992*/
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: normal;
+    /* white-space: normal; */
     font-size: 21px;
     font-weight: bold;
     color: white;
+  }
+
+  .box-text {
+    padding: 30px;
+  }
+
+  .jumbo-text {
+    width: 60%;
+    margin-left: 50px;
+  }
+
+  .logo-image {
+    margin-left: 100px;
+    width: 350px; /* Adjust the width to your desired size */
+  }
+
+  .read-more-btn {
+    background-color: #005c87;
+    margin-left: 50px;
+  }
+
+  .products-intro {
+    display: inline-block;
+    margin-top: 90px;
+    margin-left: 180px;
+  }
+
+  .products-intro img {
+    width: 85%;
+    padding: 0;
+    margin-left: 50px;
+    border: 0.5px solid rgb(235, 231, 231);
+  }
+
+  .products-intro-text {
+    text-align: left;
+    width: 40%;
+    padding: 0;
+    margin-top: 40px;
+  }
+
+  .col-lg-4 {
+    padding: 0;
+  }
+}
+
+@media (max-width: 991px) {
+  .mobile-box {
+    position: relative;
+    width: 100%;
+    top: 0;
+    background-color: #005c87;
+    border: 15px solid white;
+    text-align: center;
+  }
+
+  .mobile-box p {
+    display: block; /* display when width <= 992*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* white-space: normal; */
+    font-size: 21px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .mobile-box-text {
+    padding: 30px;
+  }
+
+  .mobile-products-intro {
+    display: block;
+  }
+
+  .tile-1 {
+    height: 222px;
+    background-color: #005c87;
+    margin-top: 10px;
+  }
+
+  .tile-1 p {
+    display: block; /* display when width <= 992*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: white;
+    padding-top: 7%; /* centers it */
+    padding-right: 10px;
+    padding-left: 10px;
+    text-align: center;
+  }
+
+  .tile-2 {
+    height: 200px;
+    background-color: darkred;
+    position: relative;
+  }
+
+  .tile-3 {
+    height: 200px;
+    background-color: #005c87;
+  }
+  /* still not sure how to center vertically */
+  .tile-3 p {
+    color: white;
+    font-size: 20px;
+    margin-top: 20%;
+  }
+  .b1 {
+    background-color: transparent;
+    color: white;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid white;
+    font-size: 25px;
+    margin-top: 13%;
+  }
+
+  .footer {
+    display: none;
   }
 }
