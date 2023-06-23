@@ -1,23 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+}
+
 body {
   overflow-y: scroll;
-  overflow-x: hidden; /* no horizontal scroll bar*/
+  /* overflow-x: hidden; no horizontal scroll bar */
 }
 
-.logo-image {
-  width: 250px; /* Adjust the width to your desired size */
-  height: auto; /* Maintain the aspect ratio */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  padding: 0px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  z-index: 1000;
+}
+
+header .logo {
+  font-weight: bolder;
+  font-size: 25px;
+  color: black;
+}
+
+header .navbar ul {
+  list-style: none; /* the bullet point icons will be removed */
+}
+
+header .navbar ul li {
+  /* position: relative; */
+  float: left;
+}
+
+header .navbar ul li a {
+  font-size: 20px;
+  padding: 20px;
+  color: black;
+  display: block;
+  text-decoration: none;
+}
+
+header .navbar ul li a:hover {
+  background-color: black;
+  color: white;
+}
+
+header .navbar ul li ul {
+  position: absolute;
+  left: 0;
+  width: 200px;
+  background: white;
+  display: none;
+  padding-left: 0;
+}
+
+header .navbar ul li ul li {
+  width: 100%; /* 100% of parent (ul) which is 200px*/
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* border lines between the li's*/
+}
+
+header .navbar ul li ul li ul {
+  /* since the width of first dropdown is 200px, */
+  /* we need to make sure 2nd dropdown is 200px from left */
+  left: 200px;
+  top: 0;
+}
+
+header .navbar ul li:focus-within > ul,
+header .navbar ul li:hover > ul {
+  display: initial;
+}
+
+/* .logo-image {
+  width: 250px; Adjust the width to your desired size
+ height: auto; Maintain the aspect ratio
   margin-left: 0;
-}
+} */
 
-.navbar {
+/* .navbar {
   height: 120px;
-  background-color: white; /* temporary */
+  background-color: white; temporary
 }
 
 .navbar-nav > li {
   padding-left: 30px;
   padding-right: 30px;
-}
+} */
 
 .jumbotron {
   background-image: url("https://cdn.discordapp.com/attachments/987016731476258906/1120400761084465336/jumbotron-image.jpeg");
@@ -309,6 +384,52 @@ button.hamburger {
 }
 
 @media (max-width: 991px) {
+  .mobile-nav {
+    display: block;
+  }
+
+  nav ul {
+    position: absolute;
+    left: 100%; /* positioned 100% from the left, aka completely to the right*/
+  }
+
+  header {
+    padding: 20px;
+    display: block;
+  }
+
+  header .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    /* display: none; */
+  }
+
+  header .navbar ul li {
+    width: 100%;
+  }
+
+  header .navbar ul li ul {
+    position: relative;
+    width: 100%;
+  }
+
+  header .navbar ul li ul li {
+    background: white;
+  }
+
+  header .navbar ul li ul li {
+    background: white;
+  }
+
+  header .navbar ul li ul li ul {
+    width: 100%;
+    left: 0;
+  }
+
   .mobile-box {
     position: relative;
     width: 100%;
