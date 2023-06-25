@@ -1,8 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&family=Spectral:wght@600&display=swap");
 * {
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
+  -webkit-font-smoothing: antialiased; /* makes text have smoother edges*/
 }
 
 body {
@@ -11,71 +13,137 @@ body {
 }
 
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  /* made position static so it will no longer be fixed */
+  position: static;
   background-color: white;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  padding: 0px 7%;
+  padding: 0px 3%;
   display: flex;
   align-items: center;
-  justify-content: end;
+  /* changed it from end to spc btwn */
+  justify-content: space-between;
   z-index: 1000;
 }
-
+.navbar {
+  padding: 0px;
+}
 header .logo {
-  font-weight: bolder;
-  font-size: 25px;
+  /* font-weight: bolder;
+  font-size: 25px; */
   color: black;
 }
-
+/* adjusted the width of logo */
+.logo-image {
+  width: 420px;
+  margin-top: 10px;
+}
 header .navbar ul {
   list-style: none; /* the bullet point icons will be removed */
+  margin-bottom: 0px;
+  padding: 0px;
 }
 
-header .navbar ul li {
+header .navbar > ul > li {
   /* position: relative; */
   float: left;
+  border-left: 1px solid rgba(206, 206, 206, 0.2);
+  height: 150px;
+  display: flex;
+  align-items: center;
 }
-
-header .navbar ul li a {
-  font-size: 20px;
-  padding: 20px;
+/* added transition here*/
+header .navbar > ul > li > a {
+  font-size: 18px;
+  padding: 150px 20px;
   color: black;
   display: block;
   text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease-in-out;
 }
-
-header .navbar ul li a:hover {
-  background-color: black;
-  color: white;
+header .navbar ul > li > a {
+  font-family: "Open Sans", sans-serif;
 }
-
+/* drop down indicator */
+.fa-angle-down {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+}
+header .navbar > ul > li > a:focus {
+  /* changed color */
+  color: #005c87;
+}
+header .navbar > ul > li > a:hover {
+  /* changed color */
+  color: #005c87;
+}
+/* changed padding and alignment*/
 header .navbar ul li ul {
   position: absolute;
   left: 0;
+  top: 150px;
   width: 200px;
-  background: white;
+  background: #005c87;
   display: none;
-  padding-left: 0;
+  padding: 20px 0px;
 }
 
+/* adjusted padding */
 header .navbar ul li ul li {
-  width: 100%; /* 100% of parent (ul) which is 200px*/
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* border lines between the li's*/
+  width: 100%;
+  padding: 5px 0px;
+}
+/* modified the bg and txt color */
+header .navbar ul li ul li a {
+  font-size: 14px;
+  color: #cecece;
+  font-weight: 500;
+  display: block;
+  text-decoration: none;
+  padding-left: 20px;
+  transition: color 0.2s;
+}
+/* added hover effect */
+header .navbar ul li ul li a:hover {
+  color: white;
 }
 
+/*added drop down indicator and transition*/
+.fa-rotate-270 {
+  position: absolute;
+  right: 20px;
+  color: white;
+  vertical-align: middle;
+  transition: right 0.2s;
+}
+
+header .navbar ul li ul li a:hover > .fa-rotate-270 {
+  /* when hover on dropdown link, then make the little right arrow move 16px to the right */
+  right: 16px;
+}
 header .navbar ul li ul li ul {
   /* since the width of first dropdown is 200px, */
   /* we need to make sure 2nd dropdown is 200px from left */
-  left: 200px;
+  left: 201px;
   top: 0;
 }
 
 header .navbar ul li:focus-within > ul,
 header .navbar ul li:hover > ul {
   display: initial;
+}
+
+/* search & shopping bag */
+.icons {
+  padding-left: 30px;
+}
+/* adding space between icons */
+.icons svg {
+  margin-right: 15px;
+}
+.shopping-bag {
+  width: 25px;
 }
 
 /* .logo-image {
@@ -104,21 +172,25 @@ header .navbar ul li:hover > ul {
 
 button.hamburger {
   background-color: #005c87;
-  border-radius: 20px;
+  border-radius: 50%;
   padding: 0px 10px;
 }
 
 .hamburger {
   position: relative;
   display: block;
-  width: 35px;
   color: white;
   cursor: pointer; /* clickable visual cue */
-
   appearance: none;
-  background: none;
   outline: none;
   border: none;
+  width: 44px;
+  height: 44px;
+  background-color: transparent;
+  background-image: linear-gradient(90deg, #005c87, #0773a5, #005c87);
+  padding: 3px;
+  border-radius: 50px;
+  margin-left: auto;
 }
 
 /* :after, :before gives 2 more bars. 1 below, 1 above */
@@ -127,21 +199,22 @@ button.hamburger {
 .hamburger:before {
   content: "";
   display: block;
-  width: 100%;
-  height: 5px;
+  width: 75%;
+  height: 3px;
   background-color: white;
-  margin: 6px 0px;
+  margin: 3px auto;
   transition: 0.4s; /* takes 0.4s for hamburger before & after to transform*/
+  border-radius: 4px;
 }
 
 .hamburger.is-active:before {
   /* animation */
-  transform: rotate(-45deg) translate(-8px, 6px);
+  transform: rotate(-45deg) translate(-4.5px, 4.5px);
 }
 
 .hamburger.is-active:after {
   /* animation */
-  transform: rotate(45deg) translate(-9.5px, -8px);
+  transform: rotate(45deg) translate(-4px, -4px);
 }
 
 .hamburger.is-active .bar {
@@ -150,41 +223,6 @@ button.hamburger {
 
 .hamburger.is-active {
   z-index: 99; /* so it appears on top mobile-nav */
-}
-
-.mobile-nav {
-  position: fixed;
-  top: 0; /* start from top*/
-  left: 100%; /* positioned 100% from the left, aka completely to the right*/
-  width: 100%;
-  min-height: 100vh; /* take up entire viewport height*/
-  display: block;
-  z-index: 98; /* so you can see the hamburger */
-  background-color: white;
-  padding-top: 120px;
-  transition: 0.4s; /* takes 0.4s for mobile-nav to transition to left: 0*/
-}
-
-.mobile-nav.is-active {
-  left: 0; /* animation */
-}
-
-.mobile-nav a {
-  display: block;
-  width: 100%;
-  max-width: 200px;
-  margin: 0 auto 16px;
-  text-align: center;
-  padding: 12px 16px;
-  background-color: #005c87;
-  border-radius: 20px;
-
-  color: white;
-  text-decoration: none;
-}
-
-.mobile-nav a:hover {
-  background-color: darkred;
 }
 
 .main-link {
@@ -236,6 +274,10 @@ button.hamburger {
     display: none;
   }
 
+  .navbar {
+    margin-left: auto;
+  }
+
   .box {
     position: relative;
     width: 55%;
@@ -264,10 +306,10 @@ button.hamburger {
     margin-left: 50px;
   }
 
-  .logo-image {
-    margin-left: 100px;
-    width: 350px; /* Adjust the width to your desired size */
-  }
+  /* .logo-image {
+    margin-left: 100px; h
+    width: 350px; Adjust the width to your desired size
+  } */
 
   .read-more-btn {
     background-color: #005c87;
@@ -384,26 +426,38 @@ button.hamburger {
 }
 
 @media (max-width: 991px) {
+  body {
+    overflow-x: hidden;
+  }
+  body.mobile-menu-open {
+    overflow: hidden;
+  }
   .mobile-nav {
     display: block;
+  }
+  .icons {
+    display: none;
   }
 
   nav ul {
     position: absolute;
-    left: 100%; /* positioned 100% from the left, aka completely to the right*/
+    right: 0;
+    /* positioned 100% from the left, aka completely to the right*/
+  }
+
+  .navbar.is-active ul {
+    right: 0;
+    padding: 0 1rem;
+    left: 0;
   }
 
   header {
     padding: 20px;
-    display: block;
+    /* position: relative; */
+    /* display: block; */
   }
 
   header .navbar {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     /* display: none; */
   }
@@ -505,4 +559,201 @@ button.hamburger {
   .footer {
     display: none;
   }
+
+  /* nav-mobile view only */
+  .navbar {
+    position: fixed;
+    top: 0 !important; /* start from top*/
+    left: 100%; /* positioned 100% from the left, aka completely to the right*/
+    margin-left: auto !important;
+    max-width: 75% !important;
+    right: -100% !important;
+    width: 400px;
+    min-height: 100vh; /* take up entire viewport height*/
+    display: block;
+    z-index: 98; /* so you can see the hamburger */
+    background-color: white;
+    /* padding-top: 120px; */
+    transition: 0.4s; /* takes 0.4s for mobile-nav to transition to left: 0*/
+  }
+
+  .navbar.is-active {
+    left: 0; /* animation */
+    right: 0 !important;
+    z-index: 100 !important;
+  }
+
+  .navbar.is-active + .cz_overlay {
+    display: block !important;
+  }
+  .offcanvas-close {
+    position: fixed;
+    z-index: 1;
+    right: 76%;
+    top: 4px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 500ms cubic-bezier(0.77, 0, 0.175, 1);
+    transform: rotate(0deg);
+    cursor: pointer;
+  }
+  .offcanvas-close span {
+    width: 1.5rem;
+    display: block;
+    height: 2px;
+    background-color: white;
+    transform: rotate(45deg) translate(-1px, -2px);
+  }
+  .offcanvas-close span:first-of-type {
+    transform: rotate(-45deg) translate(0px, 0px);
+  }
+  .offcanvas-close:hover {
+    transform: rotate(180deg);
+  }
+
+  header .logo {
+    z-index: 0;
+  }
+
+  .hamburger.is-active + .offcanvas-close {
+    display: block !important;
+  }
+
+  .hamburger.is-active {
+  }
+
+  @-webkit-keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fadein {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+      z-index: 9999;
+    }
+  }
+
+  .navbar a {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto 0;
+    text-align: center;
+    padding: 12px 16px !important;
+    /* background-color: #005c87; */
+    /* border-radius: 20px; */
+
+    color: white;
+    text-decoration: none;
+  }
+
+  .navbar a:hover {
+    /* background-color: darkred; */
+  }
+  header .navbar ul li:focus-within > ul,
+  header .navbar ul li:hover > ul {
+    display: none;
+  }
+
+  .logo-image {
+    width: 220px;
+    margin-top: 10px;
+  }
+
+  header .navbar > ul > li {
+    height: auto;
+    display: initial;
+  }
+
+  header .navbar > ul > li a {
+    font-size: 14px !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    font-weight: 600 !important;
+    text-align: left !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+  }
+  header .navbar > ul > li:first-of-type > a:first-of-type,
+  header .navbar > ul > li:first-of-type > ul > li:first-of-type > a:first-of-type,
+  header .navbar > ul > li:first-of-type > ul > li:nth-of-type(2) > a:first-of-type {
+    box-shadow: inset -50px 0 0 white, inset -51px 0 0 rgba(0, 0, 0, 0.1);
+  }
+  header .navbar > ul > li:hover > a {
+    color: #005c87 !important;
+  }
+  header .navbar ul.sub-menu li > a:hover {
+    color: #3f51b5 !important;
+  }
+  header .navbar ul li.active > a {
+    color: #005c87 !important;
+  }
+  header .navbar ul.active {
+    display: block !important;
+  }
+  .navbar.is-active ul {
+    top: 0 !important;
+    background-color: none !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+  .navbar ul.sub-menu {
+    padding-left: 5px !important;
+  }
+  ul.sub-menu li a {
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .navbar ul {
+    width: 100% !important;
+  }
+  .navbar .fa-angle-down {
+    color: rgba(0, 0, 0, 0.6) !important;
+    position: absolute;
+    right: 16px;
+    color: white;
+    vertical-align: middle;
+    transition: right 0.2s;
+  }
+  .fa-rotate-270 {
+    transform: rotate(0deg) !important;
+    transform-origin: 6px;
+    right: 16px !important;
+  }
+  header .navbar li.active > a > i.fa-angle-down {
+    transform: rotate(180deg) !important;
+    right: 16px !important;
+    transform-origin: 6px;
+  }
+  header .navbar li {
+    padding: 0 !important;
+    border: none;
+    /* border-top: 1px solid rgba(0,0,0,0.1) !important; */
+  }
+
+  header .navbar ul li ul {
+    top: 0 !important;
+    background: white !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  .cz_overlay {
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+@media (max-width: 768px) {
 }
