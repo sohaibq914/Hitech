@@ -1,3 +1,18 @@
+AOS.init();
+
+// You can also pass an optional settings object
+// below listed default settings
+AOS.init({
+  // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+  offset: 120, // offset (in px) from the original trigger point
+  delay: 0, // values from 0 to 3000, with step 50ms
+  duration: 800, // values from 0 to 3000, with step 50ms
+  easing: "ease", // default easing for AOS animations
+  once: false, // whether animation should happen only once - while scrolling down
+  mirror: false, // whether elements should animate out while scrolling past them
+  anchorPlacement: "top-bottom", // defines which position of the element regarding to window should trigger the animation
+});
+
 window.onload = function () {
   const menu_btn = document.querySelector(".hamburger");
   const mobile_menu = document.querySelector("nav");
@@ -33,4 +48,24 @@ window.onload = function () {
     const random = Math.floor(Math.random() * 3);
     mobileImage.src = images[random];
   }, 3000);
+
+  // offscreen close button
+  const close_nav = document.querySelector(".offcanvas-close");
+  close_nav.addEventListener("click", () => {
+    menu_btn.click();
+  });
+
+  // nested menu appear through click on mobile screen
+  const navbar = document.querySelector(".navbar");
+  const lis = navbar.querySelectorAll("li");
+  lis.forEach((x) => {
+    x.addEventListener("click", (e) => {
+      let ul = x.querySelector(":scope > ul");
+      if (ul) {
+        e.stopPropagation();
+        x.classList.toggle("active");
+        ul.classList.toggle("active");
+      }
+    });
+  });
 };
