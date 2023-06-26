@@ -9,7 +9,8 @@
 
 body {
   overflow-y: scroll;
-  overflow-x: hidden; /* no horizontal scroll bar */
+  /* no horizontal scroll bar */
+  /* overflow-x: hidden;  */
 }
 
 header {
@@ -41,11 +42,14 @@ header .navbar ul {
   list-style: none; /* the bullet point icons will be removed */
   margin-bottom: 0px;
   padding: 0px;
+  display: flex;
 }
 
+/** only selects li that are direct descendants of ul, diff from .navbar ul li*/
 header .navbar > ul > li {
-  /* position: relative; */
-  float: left;
+  /** display: flex does the same thing, but need to flex-direction: column on moible*/
+  /** can't do display: block on mobile bc we won't have access to flex properties*/
+  /* float: left; */
   border-left: 1px solid rgba(206, 206, 206, 0.2);
   height: 150px;
   display: flex;
@@ -70,6 +74,8 @@ header .navbar ul > li > a {
   height: 1em;
   vertical-align: middle;
 }
+
+/* :focus =~ clicked*/
 header .navbar > ul > li > a:focus {
   /* changed color */
   color: #005c87;
@@ -81,8 +87,9 @@ header .navbar > ul > li > a:hover {
 /* changed padding and alignment*/
 header .navbar ul li ul {
   position: absolute;
+  /* navbar is relative bc styled by bootstrap */
   left: 0;
-  top: 150px;
+  top: 150px; /* since height of navbar ul li is 150px, we need dropdown 150px below that */
   width: 200px;
   background: #005c87;
   display: none;
@@ -92,10 +99,11 @@ header .navbar ul li ul {
 /* adjusted padding */
 header .navbar ul li ul li {
   width: 100%;
-  padding: 5px 0px;
+  padding: 5px 0px; /* vertical padding between the li's in the dropdown*/
 }
 /* modified the bg and txt color */
 header .navbar ul li ul li a {
+  /** targets all <a> (even the nested ones) from ul li ul li */
   font-size: 14px;
   color: #cecece;
   font-weight: 500;
@@ -131,7 +139,7 @@ header .navbar ul li ul li ul {
 
 header .navbar ul li:focus-within > ul,
 header .navbar ul li:hover > ul {
-  display: initial;
+  display: initial; /** the dropdown is displayed when li is focused or hovered*/
 }
 
 /* search & shopping bag */
@@ -202,7 +210,7 @@ button.hamburger {
   width: 75%;
   height: 3px;
   background-color: white;
-  margin: 3px auto;
+  margin: 5px auto;
   transition: 0.4s; /* takes 0.4s for hamburger before & after to transform*/
   border-radius: 4px;
 }
@@ -491,6 +499,7 @@ button.hamburger {
     background-color: #005c87;
     border: 15px solid white;
     text-align: center;
+    z-index: -1;
   }
 
   .mobile-box p {
@@ -561,12 +570,16 @@ button.hamburger {
   }
 
   /* nav-mobile view only */
+  header .navbar ul {
+    flex-direction: column; /** better than block because it you still have access flex properties */
+  }
+
   .navbar {
     position: fixed;
     top: 0 !important; /* start from top*/
     left: 100%; /* positioned 100% from the left, aka completely to the right*/
     margin-left: auto !important;
-    max-width: 75% !important;
+    max-width: 75% !important; /* doesn't take up the entire viewport width*/
     right: -100% !important;
     width: 400px;
     min-height: 100vh; /* take up entire viewport height*/
@@ -595,6 +608,7 @@ button.hamburger {
     display: flex;
     justify-content: center;
     align-items: center;
+    /** bezier produces different speend at different point... change to linear to see diff */
     transition: transform 500ms cubic-bezier(0.77, 0, 0.175, 1);
     transform: rotate(0deg);
     cursor: pointer;
@@ -617,13 +631,13 @@ button.hamburger {
     z-index: 0;
   }
 
+  /** only selects offcanvas-close when hamburger class is active*/
   .hamburger.is-active + .offcanvas-close {
+    /** was hidden via html, but display: block makes it visible... !important overrides bootstrap*/
     display: block !important;
   }
 
-  .hamburger.is-active {
-  }
-
+  /** animation comaptibility in old browsers*/
   @-webkit-keyframes fadein {
     0% {
       opacity: 0;
@@ -661,7 +675,7 @@ button.hamburger {
   }
   header .navbar ul li:focus-within > ul,
   header .navbar ul li:hover > ul {
-    display: none;
+    display: none; /* when start, no dropdowns are navbars */
   }
 
   .logo-image {
@@ -683,7 +697,8 @@ button.hamburger {
   }
   header .navbar > ul > li:first-of-type > a:first-of-type,
   header .navbar > ul > li:first-of-type > ul > li:first-of-type > a:first-of-type,
-  header .navbar > ul > li:first-of-type > ul > li:nth-of-type(2) > a:first-of-type {
+  header .navbar > ul > li:first-of-type > ul > li:nth-of-type(2) > a:first-of-type,
+  header .navbar > ul > li:first-of-type > ul > li:nth-of-type(3) > a:first-of-type {
     box-shadow: inset -50px 0 0 white, inset -51px 0 0 rgba(0, 0, 0, 0.1);
   }
   header .navbar > ul > li:hover > a {
@@ -705,7 +720,7 @@ button.hamburger {
     padding: 0 !important;
   }
   .navbar ul.sub-menu {
-    padding-left: 5px !important;
+    padding-left: 5px !important; /* so we can see sub-menu is nested*/
   }
   ul.sub-menu li a {
     border-left: 1px solid rgba(0, 0, 0, 0.1);
@@ -722,10 +737,12 @@ button.hamburger {
     transition: right 0.2s;
   }
   .fa-rotate-270 {
-    transform: rotate(0deg) !important;
-    transform-origin: 6px;
+    transform: rotate(0deg) !important; /* arrows facing up, not right */
+    transform-origin: 6px; /** rotations starts for 6px, easier to notice on large icons*/
     right: 16px !important;
   }
+
+  /* when li.active (or when li is clicked to activiate dropdown) then rotate arrows 180deg */
   header .navbar li.active > a > i.fa-angle-down {
     transform: rotate(180deg) !important;
     right: 16px !important;
@@ -745,6 +762,7 @@ button.hamburger {
   }
 
   .cz_overlay {
+    /** to make background (stuff that's not navbar) dimmed*/
     position: fixed;
     display: none;
     top: 0;
@@ -754,6 +772,30 @@ button.hamburger {
     width: 100%;
     background: rgba(0, 0, 0, 0.6);
   }
-}
-@media (max-width: 768px) {
+
+  .prod-img {
+    /* width: 200px; */
+  }
+
+  .prod-name {
+    margin: 20px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    /* margin-left: 50px; */
+    /* display: block; */
+  }
+
+  .prod-container {
+    position: relative;
+  }
+
+  .price {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #005c87;
+    font-weight: bold;
+    font-size: 14px;
+  }
 }
