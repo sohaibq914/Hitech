@@ -774,16 +774,22 @@ button.hamburger {
   }
 
   .prod-img {
-    /* width: 200px; */
+    width: 100%;
+  }
+
+  .prod-img {
   }
 
   .prod-name {
     margin: 20px;
+    margin-bottom: 40px;
     text-align: center;
     font-size: 22px;
     font-weight: bold;
-    /* margin-left: 50px; */
-    /* display: block; */
+  }
+
+  .prod-name:hover {
+    color: #005c87;
   }
 
   .prod-container {
@@ -792,10 +798,33 @@ button.hamburger {
 
   .price {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 5px;
+    right: 8px;
     color: #005c87;
     font-weight: bold;
     font-size: 14px;
+  }
+
+  .overlay {
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    background-color: #005c87;
+    border-radius: 5px;
+    bottom: 0px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    display: hidden;
+  }
+
+  .fa-cart-shopping {
+    margin-top: 8px;
+    margin-left: 16px;
+  }
+
+  .cart-text {
+    font-size: 13px;
+    padding-left: 5px;
   }
 }
