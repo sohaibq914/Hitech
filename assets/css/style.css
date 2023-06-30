@@ -398,6 +398,10 @@ button.hamburger {
     margin-left: 20px;
   }
 
+  .mobile-footer {
+    dipslay: none;
+  }
+
   .footer {
     display: block;
     background-color: #005c87;
@@ -430,6 +434,10 @@ button.hamburger {
   .footer p {
     margin-bottom: 0;
     padding-bottom: 10px;
+  }
+
+  .mobile-footer {
+    display: none;
   }
 }
 
@@ -775,9 +783,7 @@ button.hamburger {
 
   .prod-img {
     width: 100%;
-  }
-
-  .prod-img {
+    height: 350px;
   }
 
   .prod-name {
@@ -788,12 +794,13 @@ button.hamburger {
     font-weight: bold;
   }
 
-  .prod-name:hover {
-    color: #005c87;
-  }
-
   .prod-container {
     position: relative;
+  }
+
+  /* this is neat. targets h1 which sibling of prod-container */
+  .prod-container:hover + h1 {
+    color: #005c87;
   }
 
   .price {
@@ -815,7 +822,11 @@ button.hamburger {
     left: 0;
     display: flex;
     justify-content: center;
-    display: hidden;
+    display: none;
+  }
+
+  .prod-container:hover .overlay {
+    display: flex;
   }
 
   .fa-cart-shopping {
@@ -826,5 +837,54 @@ button.hamburger {
   .cart-text {
     font-size: 13px;
     padding-left: 5px;
+  }
+
+  .sorting {
+    display: flex;
+    position: relative;
+  }
+
+  .sorting p {
+    width: 200px;
+  }
+
+  .sorting select {
+    width: 180px;
+    position: absolute;
+    right: 0;
+  }
+
+  .mobile-footer {
+    display: block;
+    background-color: #005c87;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .mobile-footer p {
+    margin: 0;
+    color: lightgray;
+  }
+
+  .all-products-heading {
+    margin-top: 50px;
+    font-weight: 700;
+  }
+
+  .page-indicator {
+    text-align: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+    background-color: #005c87;
+    position: relative;
+  }
+
+  .page-indicator p {
+    position: absolute;
+    color: white;
+    justify-content: center;
+    left: 40%;
+    top: 20%;
   }
 }

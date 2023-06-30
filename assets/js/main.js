@@ -69,3 +69,41 @@ window.onload = function () {
     });
   });
 };
+
+// switch images when hover
+
+const masimo_touch = document.getElementById("masimo-touch");
+
+masimo_touch.addEventListener("mouseover", function (event) {
+  // Code to be executed when the element is being hovered over
+  masimo_touch.src = "./assets/images/masimo_touch_2.png";
+});
+
+masimo_touch.addEventListener("mouseout", function (event) {
+  // Code to be executed when the mouse moves away from the element
+  masimo_touch.src = "./assets/images/masimo_touch.png";
+});
+
+const masimo_rainbow = document.getElementById("masimo-rainbow");
+
+masimo_rainbow.addEventListener("mouseover", function (event) {
+  // Code to be executed when the element is being hovered over
+  masimo_rainbow.src = "./assets/images/masimo_rainbow_2.png";
+});
+
+masimo_rainbow.addEventListener("mouseout", function (event) {
+  // Code to be executed when the mouse moves away from the element
+  masimo_rainbow.src = "./assets/images/masimo_rainbow.png";
+});
+
+const spo2_adapter_cable = document.getElementById("spo2-adapter-cable");
+
+spo2_adapter_cable.addEventListener("mouseover", function (event) {
+  // Code to be executed when the element is being hovered over
+  spo2_adapter_cable.src = "./assets/images/spo2_adapter_cable_2.jpg";
+});
+
+spo2_adapter_cable.addEventListener("mouseout", function (event) {
+  // Code to be executed when the mouse moves away from the element
+  spo2_adapter_cable.src = "./assets/images/spo2_adapter_cable.jpg";
+});
