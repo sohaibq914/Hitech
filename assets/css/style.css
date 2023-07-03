@@ -1082,7 +1082,7 @@ button.hamburger {
     margin-bottom: 20px;
   }
 
-  /* removing the arrows/spinner from input input type number */
+  /* removing the arrows/spinner from input type number */
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
@@ -1143,5 +1143,24 @@ button.hamburger {
 
   .prod-desc-p2 {
     margin-top: 60px;
+  }
+
+  .related-prod {
+    margin-left: 40px;
+    margin-right: 20px;
+  }
+
+  .related-prod-heading {
+    margin-top: 60px;
+    margin-left: 40px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .hr {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    color: lightgray;
   }
 }
