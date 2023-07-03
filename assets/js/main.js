@@ -14,11 +14,6 @@ AOS.init({
 });
 
 window.onload = function () {
-  // magnify image
-  $(document).ready(function () {
-    $(".zoom-img").magnify();
-  });
-
   const menu_btn = document.querySelector(".hamburger");
   const mobile_menu = document.querySelector("nav");
 
@@ -112,5 +107,3 @@ spo2_adapter_cable.addEventListener("mouseout", function (event) {
   // Code to be executed when the mouse moves away from the element
   spo2_adapter_cable.src = "./assets/images/spo2_adapter_cable.jpg";
 });
-
-// magnify image

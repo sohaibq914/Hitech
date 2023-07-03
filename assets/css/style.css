@@ -1163,4 +1163,8 @@ button.hamburger {
     margin-bottom: 40px;
     color: lightgray;
   }
+
+  .lens-mobile {
+    display: none;
+  }
 }
