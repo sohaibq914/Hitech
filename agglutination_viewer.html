@@ -27,7 +27,7 @@
       <nav class="navbar">
         <ul class="">
           <li>
-            <a href="products.html">
+            <a href="#">
               Products
               <i class="fa-solid fa-angle-down"></i>
             </a>
@@ -93,17 +93,38 @@
     </header>
 
     <div class="container-fluid">
-      <h1 class="all-products-heading">All Products</h1>
-      <p>All products</p>
-      <div class="sorting">
-        <p>Showing 1-8 of 10 results</p>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Default Sorting</option>
-          <option value="1">Sort by price: low to high</option>
-          <option value="2">Sort by price: high to low</option>
-        </select>
+      <div class="row">
+        <div class="col-12 col-lg-6">
+          <div class="zoom-img-container">
+            <img class="zoom-img img-fluid" src="assets/images/agglutinationviewer.png" alt="" />
+            <div class="zoom-icon-container"><i class="fa fa-search-plus zoom-icon" aria-hidden="true"></i></div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="prod-text">
+            <h1 class="prod-text-name">Agglutination Viewer</h1>
+            <p class="prod-text-price">$290.00</p>
+            <p class="prod-text-desc">Tube Agglutination viewer for use in blood banks to grade agglutination test. The test tube viewer is the standard type of viewing apparatus used for all agglutination test in blood banks such as forward and reverses typing and antigen typing. It’s equipped with a xenon lamp bulb and concave mirror for detailed viewing of both the top and bottom of the test tube. The mirror is held to the lamp assembly using a magnet. The magnet enables the mirror to be easily adjusted to the technologist’s viewing preference.</p>
+            <button class="minus">-</button>
+            <input type="number" class="number-input" />
+            <button class="plus">+</button>
+            <a class="prod-cart" href="#">Add to cart</a>
+            <p class="category-text">Category: <span class="category-subtext">Hi-Tech Instruments</span></p>
+          </div>
+        </div>
       </div>
-
+      <div class="prod-desc">
+        <p class="prod-desc-heading">Description</p>
+        <p class="prod-desc-p1">Agglutination viewer for reading abo rh’s, mixed fields, cross matches and macro DAT’s.</p>
+        <ul>
+          <li>Illuminates tube contents with a bright 5W bulb (included) from above and a magnifying mirror from below</li>
+          <li>Gooseneck arm allows you to position the light at an ergonomic angle</li>
+          <li>Magnetic mount for fast and stay-put positioning</li>
+        </ul>
+        <p class="prod-desc-p2">Tube Agglutination viewer for use in blood banks to grade agglutination test. The test tube viewer is the standard type of viewing apparatus used for all agglutination test in blood banks such as forward and reverses typing and antigen typing. It’s equipped with a xenon lamp bulb and concave mirror for detailed viewing of both the top and bottom of the test tube. The mirror is held to the lamp assembly using a magnet. The magnet enables the mirror to be easily adjusted to the technologist’s viewing preference.</p>
+      </div>
+      <h1>Related Products</h1>
+      <hr />
       <div class="row">
         <div class="col-6 col-lg-3">
           <div class="prod-container">
@@ -143,95 +164,6 @@
           </div>
           <h1 class="prod-name">Blood Bag Tube Stripper</h1>
         </div>
-
-        <div class="col-6 col-lg-3">
-          <div class="prod-container">
-            <a href="#">
-              <img src="./assets/images/blood_mixer.jpg" alt="" class="prod-img img-fluid" />
-            </a>
-
-            <p class="price">$290.00</p>
-            <div class="overlay">
-              <i class="fa-solid fa-cart-shopping d-flex" style="color: white"> <span class="cart-text">Add to cart</span></i>
-            </div>
-          </div>
-          <h1 class="prod-name">GENESIS Blood Collection Mixer</h1>
-        </div>
-
-        <div class="col-6 col-lg-3">
-          <div class="prod-container">
-            <a href="">
-              <img src="./assets/images/plasma_extractor.png" alt="" class="prod-img img-fluid" />
-            </a>
-
-            <p class="price">$250.00</p>
-            <div class="overlay">
-              <i class="fa-solid fa-cart-shopping d-flex" style="color: white"> <span class="cart-text">Add to cart</span></i>
-            </div>
-          </div>
-          <h1 class="prod-name">Manual Plasma Extractor</h1>
-        </div>
-
-        <div class="col-6 col-lg-3">
-          <div class="prod-container">
-            <a href="">
-              <img src="./assets/images/masimo_touch.png" alt="" class="prod-img img-fluid" id="masimo-touch" />
-            </a>
-
-            <p class="price">$400.00</p>
-            <div class="overlay">
-              <i class="fa-solid fa-cart-shopping d-flex" style="color: white"> <span class="cart-text">Add to cart</span></i>
-            </div>
-          </div>
-          <h1 class="prod-name">Masimo Radical 7 Pulse Oximeter Touchscreen</h1>
-        </div>
-
-        <div class="col-6 col-lg-3">
-          <div class="prod-container">
-            <a href="">
-              <img src="./assets/images/masimo_rainbow.png" alt="" class="prod-img img-fluid" id="masimo-rainbow" />
-            </a>
-
-            <p class="price">$350.00</p>
-            <div class="overlay">
-              <i class="fa-solid fa-cart-shopping d-flex" style="color: white"> <span class="cart-text">Add to cart</span></i>
-            </div>
-          </div>
-          <h1 class="prod-name">Masimo Radical 7 Rainbow Pulse Oximeter</h1>
-        </div>
-
-        <div class="col-6 col-lg-3">
-          <div class="prod-container">
-            <a href="">
-              <img src="./assets/images/spo2_adapter_cable.jpg" alt="" class="prod-img img-fluid" id="spo2-adapter-cable" />
-            </a>
-
-            <p class="price">$35.00</p>
-            <div class="overlay">
-              <i class="fa-solid fa-cart-shopping d-flex" style="color: white"> <span class="cart-text">Add to cart</span></i>
-            </div>
-          </div>
-          <h1 class="prod-name">Nellcor DOC-10 Spo2 Adapter Cable</h1>
-        </div>
-      </div>
-
-      <div class="page-numbers">
-        <a href="#">
-          <div class="page-indicator">
-            <p>1</p>
-          </div>
-        </a>
-        <a href="products2.html">
-          <div class="page-indicator">
-            <p>2</p>
-          </div>
-        </a>
-
-        <a href="#">
-          <div class="page-indicator">
-            <p><i class="fa-solid fa-arrow-right"></i></p>
-          </div>
-        </a>
       </div>
     </div>
 
