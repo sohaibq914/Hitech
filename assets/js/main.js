@@ -107,3 +107,21 @@ spo2_adapter_cable.addEventListener("mouseout", function (event) {
   // Code to be executed when the mouse moves away from the element
   spo2_adapter_cable.src = "./assets/images/spo2_adapter_cable.jpg";
 });
+
+// Select all element with the "price" class
+let priceElements = document.querySelectorAll(".price");
+
+// Create an array to store the product prices
+let productPrices = [];
+
+// Loop through the price elements and store their values in the array
+priceElements.forEach(function (element) {
+  let priceText = element.textContent;
+  // Remove the dollar sign and convert the price to a number
+  let price = parseFloat(priceText.replace("$", ""));
+  // Add the price to the array
+  productPrices.push(price);
+});
+
+// Now, productPrices array contains the prices of all products
+console.log(productPrices);
