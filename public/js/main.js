@@ -37,7 +37,7 @@ window.onload = function () {
   window.addEventListener("resize", removeMobileNavClass);
 
   const image = document.querySelector("#changing-image");
-  const images = ["./assets/images/stripper.png", "./assets/images/agglutinationviewer.png", "./assets/images/Blood-Bag-Shaker.avif"];
+  const images = ["/images/stripper.png", "/images/agglutinationviewer.png", "/images/Blood-Bag-Shaker.avif"];
   setInterval(function () {
     const random = Math.floor(Math.random() * 3);
     image.src = images[random];
@@ -76,36 +76,36 @@ const masimo_touch = document.getElementById("masimo-touch");
 
 masimo_touch.addEventListener("mouseover", function (event) {
   // Code to be executed when the element is being hovered over
-  masimo_touch.src = "./assets/images/masimo_touch_2.png";
+  masimo_touch.src = "/images/masimo_touch_2.png";
 });
 
 masimo_touch.addEventListener("mouseout", function (event) {
   // Code to be executed when the mouse moves away from the element
-  masimo_touch.src = "./assets/images/masimo_touch.png";
+  masimo_touch.src = "/images/masimo_touch.png";
 });
 
 const masimo_rainbow = document.getElementById("masimo-rainbow");
 
 masimo_rainbow.addEventListener("mouseover", function (event) {
   // Code to be executed when the element is being hovered over
-  masimo_rainbow.src = "./assets/images/masimo_rainbow_2.png";
+  masimo_rainbow.src = "/images/masimo_rainbow_2.png";
 });
 
 masimo_rainbow.addEventListener("mouseout", function (event) {
   // Code to be executed when the mouse moves away from the element
-  masimo_rainbow.src = "./assets/images/masimo_rainbow.png";
+  masimo_rainbow.src = "/images/masimo_rainbow.png";
 });
 
 const spo2_adapter_cable = document.getElementById("spo2-adapter-cable");
 
 spo2_adapter_cable.addEventListener("mouseover", function (event) {
   // Code to be executed when the element is being hovered over
-  spo2_adapter_cable.src = "./assets/images/spo2_adapter_cable_2.jpg";
+  spo2_adapter_cable.src = "/images/spo2_adapter_cable_2.jpg";
 });
 
 spo2_adapter_cable.addEventListener("mouseout", function (event) {
   // Code to be executed when the mouse moves away from the element
-  spo2_adapter_cable.src = "./assets/images/spo2_adapter_cable.jpg";
+  spo2_adapter_cable.src = "/images/spo2_adapter_cable.jpg";
 });
 
 // Select all element with the "price" class
