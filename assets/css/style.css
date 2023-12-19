@@ -273,6 +273,14 @@ button.hamburger {
   border: 0.5px solid lightgray;
 }
 
+.number-input {
+  width: 50px;
+  height: 40px;
+  border: 1px solid lightgray;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 @media (min-width: 992px) {
   .mobile-nav {
     display: none;
@@ -554,6 +562,143 @@ button.hamburger {
     margin: 0;
     outline: 0;
     color: white;
+  }
+
+  .minus {
+    background-color: lightgray;
+    width: 40px;
+    height: 40px;
+    border: none;
+  }
+
+  .plus {
+    background-color: lightgray;
+    width: 40px;
+    height: 40px;
+    border: none;
+  }
+
+  .prod-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    width: 125px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: #005c87;
+  }
+
+  .prod-cart:hover {
+    color: white;
+  }
+
+  .category-subtext {
+    font-weight: 600;
+  }
+
+  .category-text {
+    font-size: 13px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+
+  .prod-text-desc {
+    line-height: 2;
+    margin-bottom: 30px;
+  }
+
+  .prod-text-name {
+    font-weight: 600;
+    margin-top: 80px;
+  }
+
+  .zoom-img-container {
+    position: relative;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    border: 1px solid lightgray;
+  }
+  .zoom-img {
+    width: 100%;
+  }
+
+  .zoom-icon-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .zoom-icon {
+    font-size: 30px;
+  }
+
+  .prod-text {
+    margin-left: 40px;
+    margin-right: 40px;
+    overflow-wrap: break-word;
+  }
+
+  .prod-text-name {
+    font-weight: 600;
+  }
+  .prod-text-price {
+    color: #005c87;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    margin-top: 15px;
+  }
+
+  .prod-text-desc {
+    line-height: 2;
+    margin-bottom: 30px;
+  }
+
+  .prod-desc {
+    margin-left: 40px;
+    margin-right: 40px;
+    line-height: 2;
+    padding: 20px;
+    border: 1px solid lightgray;
+  }
+
+  .prod-desc-heading {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  prod-desc-p1 {
+    margin-bottom: 10px;
+  }
+
+  .prod-desc-p2 {
+    margin-top: 60px;
+  }
+
+  .related-prod {
+    margin-left: 40px;
+    margin-right: 20px;
+  }
+
+  .related-prod-heading {
+    margin-top: 60px;
+    margin-left: 40px;
+    font-size: 22px;
+    font-weight: bold;
+  }
+
+  .hr {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 40px;
+    color: lightgray;
   }
 }
 
@@ -1074,14 +1219,6 @@ button.hamburger {
     border: none;
   }
 
-  .number-input {
-    width: 50px;
-    height: 40px;
-    border: 1px solid lightgray;
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
   /* removing the arrows/spinner from input type number */
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
@@ -1162,9 +1299,5 @@ button.hamburger {
     margin-right: 40px;
     margin-bottom: 40px;
     color: lightgray;
-  }
-
-  .lens-mobile {
-    display: none;
   }
 }
