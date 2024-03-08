@@ -1,0 +1,50 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container-fluid">
+  <h1 class="all-products-heading">All Products</h1>
+  <p>All products</p>
+  <div class="sorting">
+    <p>Showing 1-8 of 10 results</p>
+    <select class="form-select" aria-label="Default select example">
+      <option selected>Default Sorting</option>
+      <option value="1">Sort by price: low to high</option>
+      <option value="2">Sort by price: high to low</option>
+    </select>
+  </div>
+
+  <div class="row">
+    <% for (product of products) {%>
+    <div class="col-6 col-lg-3">
+      <div class="prod-container">
+        <a href="blood_bag_shaker.html">
+          <img src="../assets/images/Blood-Bag-Shaker.avif" alt="" class="prod-img img-fluid" />
+        </a>
+        <p class="price"><%= product.price %></p>
+        <div class="overlay">
+          <i class="fa-solid fa-cart-shopping d-flex" style="color: white"> <span class="cart-text">Add to cart</span></i>
+        </div>
+      </div>
+      <h1 class="prod-name"><%= product.name %></h1>
+    </div>
+    <% } %>
+  </div>
+
+  <div class="page-numbers">
+    <a href="#">
+      <div class="page-indicator">
+        <p>1</p>
+      </div>
+    </a>
+    <a href="products2.html">
+      <div class="page-indicator">
+        <p>2</p>
+      </div>
+    </a>
+
+    <a href="#">
+      <div class="page-indicator">
+        <p><i class="fa-solid fa-arrow-right"></i></p>
+      </div>
+    </a>
+  </div>
+</div>
