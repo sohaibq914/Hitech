@@ -23,7 +23,12 @@ const seedDB = async () => {
       name: productsArray[i],
       image: `https://images.unsplash.com/photo-1579168765467-3b235f938439?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam ex totam blanditiis illum fugiat perferendis quidem ut debitis voluptate modi, molestiae beatae optio sequi distinctio veniam consectetur et suscipit! Quod.",
-      bulletDesc: "Lorem1, Lorem2, Lorem3",
+      features: [
+        "Feature 1: Description",
+        "Feature 2: Description",
+        "Feature 3: Description",
+        // Add as many features as needed
+      ],
       price: price,
     });
     await newProduct.save();

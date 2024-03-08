@@ -1,0 +1,53 @@
+<% layout("layouts/boilerplate") %>
+<div class="row">
+  <h1 class="text-center mt-5">New Product</h1>
+  <!-- middle of 6 col-->
+  <div class="col-md-6 offset-md-3">
+    <!-- no validate using browser but thru bootstrap validated-form -->
+    <!-- enctype so server can read images when form is sent -->
+    <form action="/products" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label" for="name">Name</label>
+        <input class="form-control" type="text" id="name" name="product[name]" required />
+        <!-- validation text thru bootstrap -->
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="location">Location</label>
+        <input class="form-control" type="text" id="location" name="product[location]" required />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="price">Product Price</label>
+
+        <div class="input-group">
+          <span class="input-group-text" id="price-label">$</span>
+          <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price" aria-describedby="price-label" name="campground[price]" required />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="description">Description</label>
+        <textarea class="form-control" type="text" id="description" name="product[description]" required></textarea>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Choose Image</label>
+        <div class="form-file custom-file">
+          <!-- removed multiple -->
+          <input class="form-control custom-file-input" type="file" id="image" name="image" />
+          <label for="image" class="form-label custom-file-label"></label>
+        </div>
+        <div id="formFile"></div>
+      </div>
+
+      <div class="mb-3">
+        <button class="btn btn-success">Add Product</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -6,7 +6,11 @@ const ProductSchema = new Schema({
   image: String,
   price: Number,
   description: String,
-  bulletDesc: String,
+  features: [
+    {
+      type: String, // Each string in this array represents a feature, like a bullet point.
+    },
+  ],
 });
 
 // name of model is products (mongoose makes it plural and lowercase)
