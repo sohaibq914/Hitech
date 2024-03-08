@@ -15,4 +15,6 @@ function previewMultiple(event) {
     form.innerHTML += '<img src="' + urls + '">';
   }
 }
-alert("Hello from addFileNamesNew.js");
+
+console.log("HI");
+console.log(process.env.CLOUDINARY_CLOUD_NAME);
