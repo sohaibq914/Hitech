@@ -3,6 +3,8 @@ const BaseJoi = require("joi");
 // validations on the server side (can't bypass even thru postman)
 // not a mongoose schema... this will validate before saving it to mongoose
 
+const sanitizeHtml = require("sanitize-html");
+
 const extension = (joi) => ({
   type: "string",
   base: joi.string(),
