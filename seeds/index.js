@@ -21,7 +21,12 @@ const seedDB = async () => {
     const price = Math.floor(Math.random() * 20) + 10;
     const newProduct = new Product({
       name: productsArray[i],
-      image: `https://images.unsplash.com/photo-1579168765467-3b235f938439?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+      image: [
+        {
+          url: `https://images.unsplash.com/photo-1579168765467-3b235f938439?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+          filename: "unsplash-image", // Optional: add a filename if needed
+        },
+      ],
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam ex totam blanditiis illum fugiat perferendis quidem ut debitis voluptate modi, molestiae beatae optio sequi distinctio veniam consectetur et suscipit! Quod.",
       features: [
         "Feature 1: Description",

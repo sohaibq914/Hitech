@@ -4,7 +4,11 @@
   <div class="row">
     <div class="col-12 col-lg-6">
       <div class="zoom-img-container">
+        <% if (product.image[0] && product.image[0].url) { %>
         <img class="zoom-img img-fluid" data-magnify-src="<%= product.image[0].url %>" src="<%= product.image[0].url %>" alt="" />
+        <% } else { %>
+        <img class="zoom-img img-fluid" data-magnify-src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" alt="" />
+        <% } %>
         <div class="zoom-icon-container"><i class="fa fa-search-plus zoom-icon" aria-hidden="true"></i></div>
       </div>
     </div>

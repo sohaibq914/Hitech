@@ -16,8 +16,12 @@
     <% for (product of products) {%>
     <div class="col-6 col-lg-3">
       <div class="prod-container">
-        <a href="blood_bag_shaker.html">
-          <img src="../assets/images/Blood-Bag-Shaker.avif" alt="" class="prod-img img-fluid" />
+        <a href="/products/<%=product._id%>">
+          <% if (product.image[0] && product.image[0].url) { %>
+          <img src="<%= product.image[0].url%>" alt="" class="prod-img img-fluid" />
+          <% } else { %>
+          <img src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" alt="" class="prod-img img-fluid" />
+          <% } %>
         </a>
         <p class="price"><%= product.price %></p>
         <div class="overlay">
