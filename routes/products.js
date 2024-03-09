@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const products = require("../controllers/products");
+const { validateProduct } = require("../middleware");
 
 const catchAsync = require("../utils/catchAsync");
 
@@ -14,7 +15,7 @@ router
 
   .get(catchAsync(products.index))
 
-  .post(upload.array("image"), products.createProduct);
+  .post(upload.array("image"), validateProduct, products.createProduct);
 
 //! will need to add a admin permission here to access the new form
 router.get("/new", products.renderNewForm); // we don't need to use .route() here because we're only using one method

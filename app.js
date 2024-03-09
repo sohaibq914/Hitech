@@ -7,6 +7,10 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
+
+const flash = require("connect-flash");
+const ExpressError = require("./utils/ExpressError");
+
 // const { campgroundSchema } = require("./schemas.js");
 // const catchAsync = require("./utils/catchAsync");
 // const ExpressError = require("./utils/ExpressError");
@@ -29,6 +33,8 @@ db.once("open", function () {
 
 const app = express();
 
+app.use(flash());
+
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views")); // absolute path, tell express where to find views
@@ -41,6 +47,20 @@ app.use("/products", productRoutes);
 
 app.get("/", (req, res) => {
   res.render("main"); // looks inside the views directory
+});
+
+// will only run if nothing else has matched first
+// for every request (.all) and for every path ("*")
+app.all("*", (req, res, next) => {
+  // passing to next() which will go error handler
+  next(new ExpressError("Page Not Found"), 404);
+});
+
+// middleware error handler
+app.use((err, req, res, next) => {
+  const { statusCode = 500 } = err;
+  if (!err.message) err.message = "Oh No, Something Went Wrong!";
+  res.status(statusCode).render("error", { err });
 });
 
 app.listen(3000, () => {
