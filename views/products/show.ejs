@@ -1,0 +1,89 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <div class="zoom-img-container">
+        <img class="zoom-img img-fluid" data-magnify-src="<%= product.image[0].url %>" src="<%= product.image[0].url %>" alt="" />
+        <div class="zoom-icon-container"><i class="fa fa-search-plus zoom-icon" aria-hidden="true"></i></div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-6">
+      <div class="prod-text">
+        <h1 class="prod-text-name"><%= product.name %></h1>
+        <p class="prod-text-price">$<%= product.price %></p>
+        <p class="prod-text-desc"><%= product.description %></p>
+        <button class="minus">-</button>
+        <input type="number" class="number-input" />
+        <button class="plus">+</button>
+        <a class="prod-cart" href="#">Add to cart</a>
+        <p class="category-text">Category: <span class="category-subtext">Hi-Tech Instruments</span></p>
+      </div>
+    </div>
+  </div>
+  <div class="prod-desc">
+    <p class="prod-desc-heading">Description</p>
+    <p class="prod-desc-p1"><%= product.description %></p>
+    <ul>
+      <% for (let feature of product.features) {%>
+      <li><%= feature %></li>
+      <% } %>
+    </ul>
+  </div>
+
+  <h1 class="related-prod-heading">Related Products</h1>
+  <hr class="hr" />
+  <div class="row">
+    <div class="col-6 col-lg-3">
+      <div class="prod-container related-prod">
+        <a href="#">
+          <img src="https://res.cloudinary.com/dozcgdyzr/image/upload/v1710006404/Hitech/stripper_ckmvno.png" alt="" class="prod-img img-fluid" />
+        </a>
+        <p class="price">$250.00</p>
+        <div class="overlay">
+          <i class="fa-solid fa-cart-shopping d-flex" style="color: white"> <span class="cart-text">Add to cart</span></i>
+        </div>
+      </div>
+      <h1 class="prod-name">Manual Plasma Extractor</h1>
+    </div>
+
+    <div class="col-6 col-lg-3">
+      <div class="prod-container related-prod">
+        <a href="">
+          <img src="https://res.cloudinary.com/dozcgdyzr/image/upload/v1710006417/Hitech/plasma_extractor_hpqfjl.png" alt="" class="prod-img img-fluid" />
+        </a>
+        <p class="price">$130.00</p>
+        <div class="overlay">
+          <i class="fa-solid fa-cart-shopping d-flex" style="color: white"> <span class="cart-text">Add to cart</span></i>
+        </div>
+      </div>
+      <h1 class="prod-name">Blood Bag Tube Stripper</h1>
+    </div>
+
+    <div class="col-6 col-lg-3">
+      <div class="prod-container related-prod">
+        <a href="">
+          <img src="https://res.cloudinary.com/dozcgdyzr/image/upload/v1710006425/Hitech/Blood-Bag-Shaker_krryzm.avif" alt="" class="prod-img img-fluid" />
+        </a>
+        <p class="price">$400.00</p>
+        <div class="overlay">
+          <i class="fa-solid fa-cart-shopping d-flex" style="color: white"> <span class="cart-text">Add to cart</span></i>
+        </div>
+      </div>
+      <h1 class="prod-name">Blood Bag Shaker</h1>
+    </div>
+
+    <div class="col-6 col-lg-3">
+      <div class="prod-container related-prod">
+        <a href="">
+          <img src="https://res.cloudinary.com/dozcgdyzr/image/upload/v1710006429/Hitech/agglutinationviewer_x5bcz3.png" alt="" class="prod-img img-fluid" />
+        </a>
+        <p class="price">$290.00</p>
+        <div class="overlay">
+          <i class="fa-solid fa-cart-shopping d-flex" style="color: white"> <span class="cart-text">Add to cart</span></i>
+        </div>
+      </div>
+      <h1 class="prod-name">Agglutination Viewer</h1>
+    </div>
+  </div>
+</div>

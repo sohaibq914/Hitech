@@ -14,9 +14,15 @@ router
   .route("/")
 
   .get(catchAsync(products.index))
-  .post(upload.array("image"), validateProduct, products.createProduct);
+  .post(upload.array("image"), validateProduct, catchAsync(products.createProduct));
 
 //! will need to add a admin permission here to access the new form
 router.get("/new", products.renderNewForm); // we don't need to use .route() here because we're only using one method
+
+router
+
+  .route("/:id")
+
+  .get(catchAsync(products.showProduct));
 
 module.exports = router;

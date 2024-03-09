@@ -27,6 +27,15 @@ module.exports.createProduct = async (req, res, next) => {
   await product.save();
   console.log(product);
   console.log(req.body.features);
-  res.redirect(`/products`);
+  res.redirect(`/products/${product._id}`); // will trigger the showProduct function
   // res.redirect(`/products/${product._id}`);
+};
+
+module.exports.showProduct = async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  if (!product) {
+    req.flash("error", "Cannot find that product!");
+    return res.redirect("/products");
+  }
+  res.render("products/show", { product });
 };
