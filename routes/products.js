@@ -24,7 +24,8 @@ router
   .route("/:id")
 
   .get(catchAsync(products.showProduct))
-  .put(upload.array("image"), validateProduct, catchAsync(products.updateProduct));
+  .put(upload.array("image"), validateProduct, catchAsync(products.updateProduct))
+  .delete(catchAsync(products.deleteProduct));
 
 router.get("/:id/edit", catchAsync(products.renderEditForm));
 
