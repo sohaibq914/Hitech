@@ -27,6 +27,8 @@ module.exports.createProduct = async (req, res, next) => {
   await product.save();
   console.log(product);
   console.log(req.body.features);
+  req.flash("success", "Successfully made a new product!");
+
   res.redirect(`/products/${product._id}`); // will trigger the showProduct function
   // res.redirect(`/products/${product._id}`);
 };

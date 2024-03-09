@@ -8,9 +8,14 @@ const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 
+const session = require("express-session");
+
 const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError");
 
+const MongoStore = require("connect-mongo");
+const dbUrl = "mongodb://127.0.0.1:27017/hitech"; // for some reason, this can't be localhost
+const secret = "thisshouldbeabettersecret!";
 // const { campgroundSchema } = require("./schemas.js");
 // const catchAsync = require("./utils/catchAsync");
 // const ExpressError = require("./utils/ExpressError");
@@ -19,6 +24,7 @@ const Product = require("./models/product"); // the product exports model
 
 const productRoutes = require("./routes/products");
 
+// for some reason, this can't be localhost
 mongoose.connect("mongodb://127.0.0.1:27017/hitech", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -33,6 +39,29 @@ db.once("open", function () {
 
 const app = express();
 
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  touchAfter: 24 * 60 * 60, // every 24 hours
+  crypto: {
+    secret,
+  },
+});
+
+const sessionConfig = {
+  store,
+  name: "session",
+  secret,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    httpOnly: true, // for a bit of security so js can't access or change cookie
+    // secure: true,
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // this is a week from now
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+  },
+};
+app.use(session(sessionConfig));
+
 app.use(flash());
 
 app.engine("ejs", ejsMate);
@@ -42,6 +71,14 @@ app.set("views", path.join(__dirname, "views")); // absolute path, tell express 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public"))); // middleware to serve static files
+
+app.use((req, res, next) => {
+  // if we logout and this middleware runs on every request, then req.user will be null
+  // this will allow us to alter menu using currentUser state
+  res.locals.success = req.flash("success"); // access to success message in ALL templates
+  res.locals.error = req.flash("error"); // access to error message in ALL templates
+  next();
+});
 
 app.use("/products", productRoutes);
 

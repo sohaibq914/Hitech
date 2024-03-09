@@ -17,7 +17,7 @@
   <body>
     <!-- using a partial to keep boilerplate clean -->
     <%- include("../partials/navbar")%>
-    <main class="content"><%- body %></main>
+    <main class="content"><%- include("../partials/flash")%> <%- body %></main>
     <%- include("../partials/footer")%>
     <script src="/js/jquery.magnify.js"></script>
     <script src="/js/jquery.magnify-mobile.js"></script>
