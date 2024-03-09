@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const products = require("../controllers/products");
 
+const catchAsync = require("../utils/catchAsync");
+
 const multer = require("multer");
 const { storage } = require("../cloudinary"); // node looks for index.js by default
 const upload = multer({ storage }); // saying multer to store image in cloudinary
@@ -10,7 +12,7 @@ router
 
   .route("/")
 
-  .get(products.index)
+  .get(catchAsync(products.index))
 
   .post(upload.array("image"), products.createProduct);
 
