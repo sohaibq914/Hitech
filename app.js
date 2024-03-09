@@ -53,6 +53,7 @@ const sessionConfig = {
   secret,
   resave: false,
   saveUninitialized: true,
+  // settings for the cookie
   cookie: {
     httpOnly: true, // for a bit of security so js can't access or change cookie
     // secure: true,

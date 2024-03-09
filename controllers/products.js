@@ -1,4 +1,5 @@
 const Product = require("../models/product"); // the products exports model
+const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
   const products = await Product.find({}); // get all products
@@ -12,7 +13,7 @@ module.exports.renderNewForm = (req, res) => {
 module.exports.createProduct = async (req, res, next) => {
   console.log("inside createProduct");
   const product = new Product(req.body.product);
-  product.image = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+  product.images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
   let incomingFeatures = req.body.features;
 
   // Check if incomingFeatures has at least one element (there should be because of the joi backend form validation but just in case)
@@ -40,4 +41,35 @@ module.exports.showProduct = async (req, res) => {
     return res.redirect("/products");
   }
   res.render("products/show", { product });
+};
+
+module.exports.renderEditForm = async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  if (!product) {
+    req.flash("error", "Cannot find that product!");
+    return res.redirect("/products"); // by returning it exits the entire func
+  }
+
+  res.render("products/edit", { product });
+};
+
+module.exports.updateProduct = async (req, res) => {
+  const { id } = req.params;
+  console.log(req.body.product);
+  console.log({ ...req.body.product });
+  const product = await Product.findByIdAndUpdate(id, { ...req.body.product });
+  const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
+  // spreading to not make array inside array instead just adding object to original array
+  product.images.push(...imgs);
+
+  await product.save();
+  if (req.body.deleteImages) {
+    for (let filename of req.body.deleteImages) {
+      await cloudinary.uploader.destroy(filename);
+    }
+    // pull (remove) from images array where filename of image is in req.body.deleteImages
+    await product.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } });
+  }
+  req.flash("success", "Successfully updated product!");
+  res.redirect(`/products/${product._id}`);
 };

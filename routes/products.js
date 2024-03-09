@@ -23,6 +23,9 @@ router
 
   .route("/:id")
 
-  .get(catchAsync(products.showProduct));
+  .get(catchAsync(products.showProduct))
+  .put(upload.array("image"), validateProduct, catchAsync(products.updateProduct));
+
+router.get("/:id/edit", catchAsync(products.renderEditForm));
 
 module.exports = router;
