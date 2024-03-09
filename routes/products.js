@@ -14,7 +14,6 @@ router
   .route("/")
 
   .get(catchAsync(products.index))
-
   .post(upload.array("image"), validateProduct, products.createProduct);
 
 //! will need to add a admin permission here to access the new form

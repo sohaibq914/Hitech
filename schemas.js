@@ -1,4 +1,5 @@
 const BaseJoi = require("joi");
+console.log("BEFORE JOI");
 
 // validations on the server side (can't bypass even thru postman)
 // not a mongoose schema... this will validate before saving it to mongoose
@@ -26,16 +27,17 @@ const extension = (joi) => ({
 });
 
 const Joi = BaseJoi.extend(extension);
+console.log("BEFORE JOI");
 
 module.exports.productSchema = Joi.object({
   product: Joi.object({
     name: Joi.string().required().escapeHTML(), // title is required
     price: Joi.number().required().min(0), // price is required and min is 0
     // image: Joi.string().required(),
-    features: Joi.string().required().escapeHTML(),
     description: Joi.string().required().escapeHTML(),
   }).required(), // saying the campground is required
   deleteImages: Joi.array(),
+  features: Joi.array().required(), // putting it here so it's required and then putting it into features array model later
 });
 
 // module.exports.reviewSchema = Joi.object({

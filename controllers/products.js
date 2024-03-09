@@ -10,11 +10,12 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createProduct = async (req, res, next) => {
+  console.log("inside createProduct");
   const product = new Product(req.body.product);
   product.image = req.files.map((f) => ({ url: f.path, filename: f.filename }));
   let incomingFeatures = req.body.features;
 
-  // Check if incomingFeatures has at least one element
+  // Check if incomingFeatures has at least one element (there should be because of the joi backend form validation but just in case)
   if (incomingFeatures.length) {
     incomingFeatures.forEach((feature) => {
       // Push each feature into the product's features array
