@@ -34,15 +34,12 @@ module.exports.validateProduct = (req, res, next) => {
   }
 };
 
-// so that only the author of the product can edit it
+// so that only the admin can edit it
 // can't bypass even thru postman
-module.exports.isAuthor = async (req, res, next) => {
-  const { id } = req.params;
-  const product = await Product.findById(id);
-  console.log(product.author);
-  if (!product.author.equals(req.user._id)) {
+module.exports.isAdmin = async (req, res, next) => {
+  if (req.user.username !== "admin") {
     req.flash("error", "You do not have permission to do that!");
-    return res.redirect(`/product/${id}`);
+    return res.redirect(`/products`);
   }
   next();
 };
