@@ -33,6 +33,7 @@ module.exports.productSchema = Joi.object({
   product: Joi.object({
     name: Joi.string().required().escapeHTML(), // title is required
     price: Joi.number().required().min(0), // price is required and min is 0
+    stockCount: Joi.number().required().min(0),
     // image: Joi.string().required(),
     description: Joi.string().required().escapeHTML(),
   }).required(), // saying the campground is required

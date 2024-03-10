@@ -35,6 +35,7 @@ const ProductSchema = new Schema(
         ref: "Review", // review model
       },
     ],
+    stockCount: Number,
   },
   opts
 );

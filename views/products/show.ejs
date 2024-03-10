@@ -19,11 +19,12 @@
         <p class="prod-text-price">$<%= product.price %></p>
         <p class="prod-text-desc"><%= product.description %></p>
         <button class="minus">-</button>
-        <input type="number" class="number-input" />
+        <input value="0" id="stockCountInput" type="number" step="1" min="0" max="<%= product.stockCount %>" class="number-input" />
         <button class="plus">+</button>
+        <%= product.stockCount %> available
         <a class="prod-cart" href="#">Add to cart</a>
         <p class="category-text">Category: <span class="category-subtext">Hi-Tech Instruments</span></p>
-        <% console.log(product.author); %> <% if (currentUser && product.author.equals(currentUser._id) && product.author.username === "sohaib") {%>
+        <% console.log(product.author); %> <% if (product.author.username === "admin") {%>
         <a class="card-link btn btn-info" href="/products/<%=product._id%>/edit">Edit</a>
         <form class="d-inline" action="/products/<%=product._id%>?_method=DELETE" method="POST">
           <button class="btn btn-danger">Delete</button>

@@ -28,6 +28,7 @@ const seedDB = async () => {
           filename: "unsplash-image", // Optional: add a filename if needed
         },
       ],
+      stockCount: 10,
       description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam ex totam blanditiis illum fugiat perferendis quidem ut debitis voluptate modi, molestiae beatae optio sequi distinctio veniam consectetur et suscipit! Quod.",
       features: [
         "Feature 1: Description",
