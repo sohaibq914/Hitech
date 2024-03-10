@@ -20,6 +20,7 @@ const seedDB = async () => {
   for (let i = 0; i < productsArray.length; i++) {
     const price = Math.floor(Math.random() * 20) + 10;
     const newProduct = new Product({
+      author: "65ed0bf0ff52986d7002e3bb",
       name: productsArray[i],
       images: [
         {

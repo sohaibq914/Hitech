@@ -1,7 +1,6 @@
 const User = require("../models/user");
 
 module.exports.renderRegister = (req, res) => {
-  console.log("RENDERING REGISTER FORM");
   res.render("users/register");
 };
 
@@ -12,7 +11,7 @@ module.exports.register = async (req, res, next) => {
     const registeredUser = await User.register(user, password); // hash and salts the password and stores info in document
     req.login(registeredUser, (err) => {
       if (err) return next(err); // callback necessary when using login func, can't use async --- that's just how passport does this
-      req.flash("success", "Welcome to Yelp Camp!");
+      req.flash("success", "Welcome to Hitech!");
       res.redirect("/products");
     });
   } catch (e) {
@@ -29,6 +28,7 @@ module.exports.login = // Now we can use res.locals.returnTo to redirect the use
   (req, res) => {
     req.flash("success", "Welcome Back!");
     // res.locals.returnTo url was stored in storeReturnTo middleware
+    console.log("L:DSFJL:SDFJ", res.locals.returnTo);
     const redirectUrl = res.locals.returnTo || "/products";
     res.redirect(redirectUrl);
   };

@@ -20,6 +20,9 @@ const secret = "thisshouldbeabettersecret!";
 // const catchAsync = require("./utils/catchAsync");
 // const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user");
 const Product = require("./models/product"); // the product exports model
 
 const userRoutes = require("./routes/users");
@@ -74,9 +77,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public"))); // middleware to serve static files
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate())); // authenticate with local strategy
+
+passport.serializeUser(User.serializeUser()); // how to store user in session
+passport.deserializeUser(User.deserializeUser()); // how to unstore user in session
+
 app.use((req, res, next) => {
   // if we logout and this middleware runs on every request, then req.user will be null
   // this will allow us to alter menu using currentUser state
+  res.locals.currentUser = req.user; // access to currentUser in ALL templates (from passport)
   res.locals.success = req.flash("success"); // access to success message in ALL templates
   res.locals.error = req.flash("error"); // access to error message in ALL templates
   next();

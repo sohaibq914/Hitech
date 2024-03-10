@@ -22,10 +22,12 @@
         <button class="plus">+</button>
         <a class="prod-cart" href="#">Add to cart</a>
         <p class="category-text">Category: <span class="category-subtext">Hi-Tech Instruments</span></p>
+        <% console.log(product.author); %> <% if (currentUser && product.author.equals(currentUser._id)) {%>
         <a class="card-link btn btn-info" href="/products/<%=product._id%>/edit">Edit</a>
         <form class="d-inline" action="/products/<%=product._id%>?_method=DELETE" method="POST">
           <button class="btn btn-danger">Delete</button>
         </form>
+        <% } %>
         <div class="card-body"></div>
       </div>
     </div>

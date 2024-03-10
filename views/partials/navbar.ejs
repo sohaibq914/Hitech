@@ -97,7 +97,12 @@
       </li>
       <li><a href="#">Contact Us</a></li>
       <li><a href="#">About Us</a></li>
+      <% if (!currentUser) {%>
+      <li><a href="/login">Login</a></li>
       <li><a href="/register">Register</a></li>
+      <% } else { %>
+      <li><a href="/logout">Logout</a></li>
+      <% } %>
     </ul>
   </nav>
   <!-- overlay shown on Mobile nav -->

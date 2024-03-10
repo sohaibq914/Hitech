@@ -25,6 +25,8 @@ module.exports.createProduct = async (req, res, next) => {
   }
 
   product.features.push();
+  console.log("YOOO", req.user._id);
+  product.author = req.user._id; // used req.user from passport
   await product.save();
   console.log(product);
   console.log(req.body.features);
@@ -35,7 +37,7 @@ module.exports.createProduct = async (req, res, next) => {
 };
 
 module.exports.showProduct = async (req, res) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id).populate("author");
   if (!product) {
     req.flash("error", "Cannot find that product!");
     return res.redirect("/products");
