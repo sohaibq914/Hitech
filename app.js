@@ -22,6 +22,7 @@ const secret = "thisshouldbeabettersecret!";
 const methodOverride = require("method-override");
 const Product = require("./models/product"); // the product exports model
 
+const userRoutes = require("./routes/users");
 const productRoutes = require("./routes/products");
 
 // for some reason, this can't be localhost
@@ -81,6 +82,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use("/", userRoutes);
 app.use("/products", productRoutes);
 
 app.get("/", (req, res) => {

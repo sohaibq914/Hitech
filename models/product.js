@@ -14,17 +14,30 @@ ImageSchema.virtual("thumbnail").get(function () {
 
 const opts = { toJSON: { virtuals: true } };
 
-const ProductSchema = new Schema({
-  name: String,
-  images: [ImageSchema],
-  price: Number,
-  description: String,
-  features: [
-    {
-      type: String, // Each string in this array represents a feature, like a bullet point.
+const ProductSchema = new Schema(
+  {
+    name: String,
+    images: [ImageSchema],
+    price: Number,
+    description: String,
+    features: [
+      {
+        type: String, // Each string in this array represents a feature, like a bullet point.
+      },
+    ],
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
-  ],
-});
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review", // review model
+      },
+    ],
+  },
+  opts
+);
 
 // name of model is products (mongoose makes it plural and lowercase)
 module.exports = mongoose.model("Product", ProductSchema);
