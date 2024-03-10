@@ -13,7 +13,6 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError");
 
-const MongoStore = require("connect-mongo");
 const dbUrl = "mongodb://127.0.0.1:27017/hitech"; // for some reason, this can't be localhost
 const secret = "thisshouldbeabettersecret!";
 // const { campgroundSchema } = require("./schemas.js");
@@ -27,6 +26,9 @@ const Product = require("./models/product"); // the product exports model
 
 const userRoutes = require("./routes/users");
 const productRoutes = require("./routes/products");
+const reviewRoutes = require("./routes/reviews");
+
+const MongoStore = require("connect-mongo");
 
 // for some reason, this can't be localhost
 mongoose.connect("mongodb://127.0.0.1:27017/hitech", {
@@ -95,6 +97,7 @@ app.use((req, res, next) => {
 
 app.use("/", userRoutes);
 app.use("/products", productRoutes);
+app.use("/products/:id/reviews", reviewRoutes);
 
 app.get("/", (req, res) => {
   res.render("main"); // looks inside the views directory

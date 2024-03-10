@@ -37,7 +37,14 @@ module.exports.createProduct = async (req, res, next) => {
 };
 
 module.exports.showProduct = async (req, res) => {
-  const product = await Product.findById(req.params.id).populate("author");
+  const product = await Product.findById(req.params.id)
+    .populate({
+      path: "reviews", // populate the reviews
+      populate: {
+        path: "author", // populate the authors inside the reviews
+      },
+    })
+    .populate("author");
   if (!product) {
     req.flash("error", "Cannot find that product!");
     return res.redirect("/products");

@@ -40,9 +40,9 @@ module.exports.productSchema = Joi.object({
   features: Joi.array().required(), // putting it here so it's required and then putting it into features array model later
 });
 
-// module.exports.reviewSchema = Joi.object({
-//   review: Joi.object({
-//     rating: Joi.number().required().min(1).max(5),
-//     body: Joi.string().required().escapeHTML(),
-//   }).required(),
-// });
+module.exports.reviewSchema = Joi.object({
+  review: Joi.object({
+    rating: Joi.number().required().min(1).max(5),
+    body: Joi.string().required().escapeHTML(),
+  }).required(),
+});
