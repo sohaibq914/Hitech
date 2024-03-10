@@ -8,6 +8,12 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
+
+  cart: {
+    // Adding cart reference here
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Cart",
+  },
 });
 
 // adds a username and password field to the schema

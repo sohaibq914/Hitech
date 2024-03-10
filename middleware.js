@@ -38,6 +38,7 @@ module.exports.validateProduct = (req, res, next) => {
 // so that only the admin can edit it
 // can't bypass even thru postman
 module.exports.isAdmin = async (req, res, next) => {
+  console.log("USERRR", req.user);
   if (req.user.username !== "admin") {
     req.flash("error", "You do not have permission to do that!");
     return res.redirect(`/products`);

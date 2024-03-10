@@ -16,8 +16,7 @@ router
   .get(catchAsync(products.index))
   .post(isLoggedIn, isAdmin, upload.array("image"), validateProduct, catchAsync(products.createProduct));
 
-//! will need to add a admin permission here to access the new form
-router.get("/new", isAdmin, isLoggedIn, products.renderNewForm); // we don't need to use .route() here because we're only using one method
+router.get("/new", isLoggedIn, isAdmin, products.renderNewForm); // we don't need to use .route() here because we're only using one method
 
 router
 

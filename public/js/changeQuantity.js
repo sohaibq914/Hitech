@@ -11,11 +11,13 @@ document.addEventListener("DOMContentLoaded", function () {
     numberInput.value = newValue;
   }
 
-  minusButton.addEventListener("click", function () {
+  minusButton.addEventListener("click", function (event) {
+    event.preventDefault();
     adjustInputValue(-1);
   });
 
-  plusButton.addEventListener("click", function () {
+  plusButton.addEventListener("click", function (event) {
+    event.preventDefault();
     adjustInputValue(1);
   });
 

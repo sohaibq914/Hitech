@@ -27,6 +27,7 @@ const Product = require("./models/product"); // the product exports model
 const userRoutes = require("./routes/users");
 const productRoutes = require("./routes/products");
 const reviewRoutes = require("./routes/reviews");
+const cartRoutes = require("./routes/cart");
 
 const MongoStore = require("connect-mongo");
 
@@ -98,6 +99,7 @@ app.use((req, res, next) => {
 app.use("/", userRoutes);
 app.use("/products", productRoutes);
 app.use("/products/:id/reviews", reviewRoutes);
+app.use("/cart", cartRoutes);
 
 app.get("/", (req, res) => {
   res.render("main"); // looks inside the views directory

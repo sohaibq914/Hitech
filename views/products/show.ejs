@@ -18,11 +18,16 @@
         <h1 class="prod-text-name"><%= product.name %></h1>
         <p class="prod-text-price">$<%= product.price %></p>
         <p class="prod-text-desc"><%= product.description %></p>
-        <button class="minus">-</button>
-        <input value="0" id="stockCountInput" type="number" step="1" min="0" max="<%= product.stockCount %>" class="number-input" />
-        <button class="plus">+</button>
-        <%= product.stockCount %> available
-        <a class="prod-cart" href="#">Add to cart</a>
+
+        <form action="/cart/<%=product._id%>/add" method="POST">
+          <button class="minus">-</button>
+          <input value="0" name="quantity" id="stockCountInput" type="number" step="1" min="1" max="<%= product.stockCount %>" class="number-input" />
+          <button class="plus">+</button>
+          <%= product.stockCount %> available
+          <!-- <a class="prod-cart"></a> -->
+          <button type="submit">Add to cart</button>
+        </form>
+
         <p class="category-text">Category: <span class="category-subtext">Hi-Tech Instruments</span></p>
         <% console.log(product.author); %> <% if (product.author.username === "admin") {%>
         <a class="card-link btn btn-info" href="/products/<%=product._id%>/edit">Edit</a>
