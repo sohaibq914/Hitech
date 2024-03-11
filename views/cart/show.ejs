@@ -35,10 +35,14 @@
     </div>
     <div class="product-price"><%= item.product.price %></div>
     <div class="product-quantity">
-      <input type="number" value="<%= item.quantity %>" min="1" />
+      <input type="number" value="<%= item.quantity %>" min="1" max="<%= item.product.stockCount %>" />
     </div>
+    <% console.log("HISDHIOFJSDPJf"); %>
     <div class="product-removal">
-      <button class="remove-product">Remove</button>
+      <% console.log("fsdfdsfsdfs", item.product._id) %>
+      <form action="/cart/<%=item.product._id%>/remove" method="POST">
+        <button class="remove-product">Remove</button>
+      </form>
     </div>
     <div class="product-line-price"><%= (item.quantity * item.product.price).toFixed(2) %></div>
   </div>
@@ -59,6 +63,55 @@
       <div class="totals-value" id="cart-total"><%= (subTotal * 1.05).toFixed(2) %></div>
     </div>
   </div>
-
-  <button class="checkout">Checkout</button>
+  <% console.log(JSON.stringify(cart.items.map(item => ({ id: item.product._id, quantity: item.quantity })))) %>
+  <button class="checkout" data-cart-items="<%= JSON.stringify(cart.items.map(item => ({ id: item.product._id, quantity: item.quantity }))) %>">Checkout</button>
 </div>
+
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    alert("HI");
+    const button = document.querySelector(".checkout"); // Use querySelector instead
+    const stripe = Stripe("pk_test_51OsxpiKUdAWFlxominpWZMk8mgML54sMMhObcU0coGUJKK9unpB8pcOLB01gdmq3ozIhzZzvmh7Y8QnzfHzKXa8c00UrXZYB63");
+    alert("HI2");
+    button.addEventListener("click", async () => {
+      alert("YOO");
+      // Ensure 'cart' is defined and accessible here
+      const cartItems = cart.items.map(function (item) {
+        return { id: item.product._id, quantity: item.quantity };
+      });
+      const response = await fetch("/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cartItems: cartItems }),
+      });
+      const session = await response.json();
+      console.log(session.id);
+      stripe.redirectToCheckout({ sessionId: session.id });
+    });
+  });
+</script> -->
+
+<!-- <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const button = document.querySelector(".checkout");
+    const stripe = Stripe("your_publishable_key_here");
+    button.addEventListener("click", async () => {
+      const cartItems = cart.items.map(function (item) {
+        return { id: item.product._id, quantity: item.quantity };
+      });
+      const response = await fetch("/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // Ensure yourCartItemsArray is defined and accessible
+
+        body: JSON.stringify({ cartItems: cartItems }),
+      });
+      const session = await response.json();
+      stripe.redirectToCheckout({ sessionId: session.id });
+    });
+  });
+</script> -->

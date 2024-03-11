@@ -28,6 +28,10 @@ const userRoutes = require("./routes/users");
 const productRoutes = require("./routes/products");
 const reviewRoutes = require("./routes/reviews");
 const cartRoutes = require("./routes/cart");
+const appRoutes = require("./routes/app");
+
+const Stripe = require("stripe");
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 
 const MongoStore = require("connect-mongo");
 
@@ -45,6 +49,7 @@ db.once("open", function () {
 });
 
 const app = express();
+app.use(express.json()); // This line is crucial
 
 const store = MongoStore.create({
   mongoUrl: dbUrl,
@@ -100,6 +105,7 @@ app.use("/", userRoutes);
 app.use("/products", productRoutes);
 app.use("/products/:id/reviews", reviewRoutes);
 app.use("/cart", cartRoutes);
+app.use("/", appRoutes);
 
 app.get("/", (req, res) => {
   res.render("main"); // looks inside the views directory

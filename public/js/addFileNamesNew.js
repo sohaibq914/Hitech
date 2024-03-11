@@ -17,4 +17,3 @@ function previewMultiple(event) {
 }
 
 console.log("HI");
-console.log(process.env.CLOUDINARY_CLOUD_NAME);

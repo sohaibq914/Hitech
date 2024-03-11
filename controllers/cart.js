@@ -6,13 +6,6 @@ module.exports.addProduct = async (req, res) => {
   const product = await Product.findById(req.params.id).populate("author");
   const quantity = req.body.quantity;
 
-  // q: why is the quantity undefined?
-  // a: because i'm not destructuring it properly
-  // q: why is it not destructuring properly?
-  // a: because i'm not using the right syntax
-  // q: what is the right syntax?
-  // a: const { quantity } = req.body;
-
   const userId = req.user._id;
   if (!product) {
     req.flash("error", "Cannot find that product!");
@@ -60,4 +53,35 @@ module.exports.showCart = async (req, res) => {
     },
   });
   res.render("cart/show", { cart });
+};
+
+module.exports.removeProduct = async (req, res) => {
+  const product = await Product.findById(req.params.id).populate("author");
+  const userId = req.user._id;
+
+  // Attempt to find the user's cart
+  let cart = await Cart.findOne({ _id: req.user.cart });
+
+  if (!cart) {
+    req.flash("error", "No cart found!");
+    return res.redirect("/cart");
+  }
+
+  // Find the index of the product in the cart
+  const productIndex = cart.items.findIndex((item) => item.product.equals(product._id));
+
+  // If the product is found in the cart, remove it
+  console.log("BEFORE REMOVAL", cart);
+  if (productIndex > -1) {
+    cart.items.splice(productIndex, 1); // Remove the product from the items array
+    await cart.save(); // Save the updated cart
+    req.flash("success", "Product removed from cart successfully!");
+  } else {
+    // Product was not found in the cart
+    req.flash("error", "Product not found in cart!");
+  }
+  console.log("AFTER REMOVAL", cart);
+
+  // Redirect back to the cart page or to another appropriate page
+  res.redirect("/cart");
 };

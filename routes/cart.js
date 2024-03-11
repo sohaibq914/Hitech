@@ -16,5 +16,6 @@ router
   .get(catchAsync(cart.showCart));
 
 router.route("/:id/add").post(isLoggedIn, catchAsync(cart.addProduct));
+router.route("/:id/remove").post(isLoggedIn, catchAsync(cart.removeProduct));
 
 module.exports = router;

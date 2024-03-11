@@ -36,18 +36,21 @@ window.onload = function () {
   // Add an event listener to detect window resize
   window.addEventListener("resize", removeMobileNavClass);
 
-  const image = document.querySelector("#changing-image");
-  const images = ["/images/stripper.png", "/images/agglutinationviewer.png", "/images/Blood-Bag-Shaker.avif"];
-  setInterval(function () {
-    const random = Math.floor(Math.random() * 3);
-    image.src = images[random];
-  }, 3000);
+  // did the if statements to avoid errors on other pages
+  if (document.querySelector("#changing-image")) {
+    const image = document.querySelector("#changing-image");
+    const images = ["/images/stripper.png", "/images/agglutinationviewer.png", "/images/Blood-Bag-Shaker.avif"];
+    setInterval(function () {
+      const random = Math.floor(Math.random() * 3);
+      image.src = images[random];
+    }, 3000);
 
-  const mobileImage = document.querySelector("#mobile-changing-image");
-  setInterval(function () {
-    const random = Math.floor(Math.random() * 3);
-    mobileImage.src = images[random];
-  }, 3000);
+    const mobileImage = document.querySelector("#mobile-changing-image");
+    setInterval(function () {
+      const random = Math.floor(Math.random() * 3);
+      mobileImage.src = images[random];
+    }, 3000);
+  }
 
   // offscreen close button
   const close_nav = document.querySelector(".offcanvas-close");
