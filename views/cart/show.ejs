@@ -34,8 +34,16 @@
       <p class="product-description"><%= item.product.description %></p>
     </div>
     <div class="product-price"><%= item.product.price %></div>
-    <div class="product-quantity">
-      <input type="number" value="<%= item.quantity %>" min="1" max="<%= item.product.stockCount %>" />
+    <div class="product-removal">
+      <% console.log("fsdfdsfsdfs", item.product._id) %>
+      <form action="">
+        <div class="product-quantity">
+          <!-- <input type="number" value="<%= item.quantity %>" min="1" max="<%= item.product.stockCount %>" /> -->
+          <input value="<%= item.quantity %>" name="quantity" id="stockCountInput" type="number" step="1" min="1" max="<%= item.product.stockCount %>" class="number-input" />
+          <!-- <input type="number" value="1" min="1" max="item.product.stock" /> -->
+        </div>
+        <button class="change-quantity">Update</button>
+      </form>
     </div>
     <% console.log("HISDHIOFJSDPJf"); %>
     <div class="product-removal">

@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-  alert("HI");
   const button = document.querySelector(".checkout"); // Use querySelector instead
   const stripe = Stripe("pk_test_51OsxpiKUdAWFlxominpWZMk8mgML54sMMhObcU0coGUJKK9unpB8pcOLB01gdmq3ozIhzZzvmh7Y8QnzfHzKXa8c00UrXZYB63");
-  alert("HI2");
 
   button.addEventListener("click", async () => {
     alert("YOO");

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Product = require("../models/product"); // the campground exports model
+const Cart = require("../models/cart");
 const fs = require("fs").promises;
 const path = require("path");
 
@@ -19,6 +20,7 @@ const productsArray = ["Agglutination Viewer", "Blood Bag Shaker", "Blood Bag Tu
 
 const seedDB = async () => {
   await Product.deleteMany({}); // Delete all existing products
+  await Cart.deleteMany({}); // Delete all existing carts
   const imagesDir = path.join(__dirname, "/../public/images");
   const imageFiles = await fs.readdir(imagesDir);
   for (let i = 0; i < productsArray.length; i++) {

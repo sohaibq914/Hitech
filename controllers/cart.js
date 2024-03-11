@@ -28,6 +28,7 @@ module.exports.addProduct = async (req, res) => {
     await user.save();
   }
 
+  console.log("YESIRR", cart.items);
   const productIndex = cart.items.findIndex((item) => item.product.equals(product._id));
 
   // if in cart

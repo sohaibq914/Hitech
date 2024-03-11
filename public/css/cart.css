@@ -142,6 +142,19 @@ label {
   background-color: #a44;
 }
 
+.product .change-quantity {
+  border: 0;
+  padding: 4px 8px;
+  background-color: #005c87;
+  color: #fff;
+  font-family: "HelveticaNeue-Medium", "Helvetica Neue Medium";
+  font-size: 12px;
+  border-radius: 3px;
+}
+.product .change-quantity:hover {
+  background-color: #004466;
+}
+
 /* Totals section */
 .totals .totals-item {
   float: right;

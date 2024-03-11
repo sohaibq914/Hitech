@@ -26,7 +26,7 @@ module.exports.createCheckoutSession = async (req, res) => {
               description: product.description,
               // Add images if available, ensure it's in an array format for Stripe
             },
-            unit_amount: product.price * 100, // Assuming `product.price` is in dollars
+            unit_amount: product.price * 100, // `product.price` is in dollars, neeed to convert to cents
           },
           quantity: item.quantity,
         };
@@ -38,8 +38,8 @@ module.exports.createCheckoutSession = async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: `https://google.com`,
-      cancel_url: `https://youtube.com`,
+      success_url: `${process.env.SERVER_URL}/cart`,
+      cancel_url: `${process.env.SERVER_URL}/cart`,
     });
 
     res.json({ url: session.url });
