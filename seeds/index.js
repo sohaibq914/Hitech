@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const Product = require("../models/product"); // the campground exports model
+const fs = require("fs").promises;
+const path = require("path");
 
 mongoose.connect("mongodb://127.0.0.1:27017/hitech", {
   useNewUrlParser: true,
@@ -17,14 +19,17 @@ const productsArray = ["Agglutination Viewer", "Blood Bag Shaker", "Blood Bag Tu
 
 const seedDB = async () => {
   await Product.deleteMany({}); // Delete all existing products
+  const imagesDir = path.join(__dirname, "/../public/images");
+  const imageFiles = await fs.readdir(imagesDir);
   for (let i = 0; i < productsArray.length; i++) {
     const price = Math.floor(Math.random() * 20) + 10;
+    const imageUrl = `/images/${imageFiles[i % imageFiles.length]}`;
     const newProduct = new Product({
       author: "65ed0bf0ff52986d7002e3bb",
       name: productsArray[i],
       images: [
         {
-          url: `https://images.unsplash.com/photo-1579168765467-3b235f938439?q=80&w=388&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`,
+          url: imageUrl, // Optional: add a default image if needed
           filename: "unsplash-image", // Optional: add a filename if needed
         },
       ],
