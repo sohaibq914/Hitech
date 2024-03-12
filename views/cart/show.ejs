@@ -71,8 +71,8 @@
       <div class="totals-value" id="cart-total"><%= (subTotal * 1.05).toFixed(2) %></div>
     </div>
   </div>
-  <% console.log(JSON.stringify(cart.items.map(item => ({ id: item.product._id, quantity: item.quantity })))) %>
-  <button class="checkout" data-cart-items="<%= JSON.stringify(cart.items.map(item => ({ id: item.product._id, quantity: item.quantity }))) %>">Checkout</button>
+  <% console.log(JSON.stringify(cart.items.map(item => ({ id: item.product._id, quantity: item.quantity })))) %> <% console.log("IN VIEW", currentUser) %>
+  <button class="checkout" current-user="<%= JSON.stringify(currentUser) %>" data-cart-items="<%= JSON.stringify(cart.items.map(item => ({ id: item.product._id, quantity: item.quantity }))) %>">Checkout</button>
 </div>
 
 <!-- <script>
