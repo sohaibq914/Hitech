@@ -48,3 +48,26 @@ module.exports.createCheckoutSession = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+module.exports.stripeWebhook = async (req, res) => {
+  // const sig = req.headers["stripe-signature"];
+  const event = req.body;
+
+  // Handle the event
+  switch (event.type) {
+    case "checkout.session.completed":
+      // const paymentIntent = event.data.object;
+      console.log("STTTTIPPPEEEE was successful!");
+
+      console.log("PaymentIntent was successful!");
+      // Then define and call a method to handle the successful payment intent.
+      // handlePaymentIntentSucceeded(paymentIntent);
+      break;
+
+    default:
+      console.log(`Unhandled event type ${event.type}`);
+  }
+
+  // Return a response to acknowledge receipt of the event
+  res.json({ received: true });
+};
