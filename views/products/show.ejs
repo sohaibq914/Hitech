@@ -21,7 +21,7 @@
 
         <form action="/cart/<%=product._id%>/add" method="POST">
           <button class="minus">-</button>
-          <input value="0" name="quantity" id="stockCountInput" type="number" step="1" min="1" max="<%= product.stockCount %>" class="number-input" />
+          <input value="0" name="quantity" class="stockCountInput" type="number" step="1" min="1" max="<%= product.stockCount %>" class="number-input" />
           <button class="plus">+</button>
           <%= product.stockCount %> available
           <!-- <a class="prod-cart"></a> -->

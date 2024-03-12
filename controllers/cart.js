@@ -86,3 +86,32 @@ module.exports.removeProduct = async (req, res) => {
   // Redirect back to the cart page or to another appropriate page
   res.redirect("/cart");
 };
+
+module.exports.updateQuantity = async (req, res) => {
+  const product = await Product.findById(req.params.id).populate("author");
+  const quantity = req.body.quantity;
+
+  // Attempt to find the user's cart
+  let cart = await Cart.findOne({ _id: req.user.cart });
+
+  if (!cart) {
+    req.flash("error", "No cart found!");
+    return res.redirect("/cart");
+  }
+
+  // Find the index of the product in the cart
+  const productIndex = cart.items.findIndex((item) => item.product.equals(product._id));
+
+  // If the product is found in the cart, update the quantity
+  if (productIndex > -1) {
+    cart.items[productIndex].quantity = parseInt(quantity, 10); // Update the quantity
+    await cart.save(); // Save the updated cart
+    req.flash("success", "Cart updated successfully!");
+  } else {
+    // Product was not found in the cart
+    req.flash("error", "Product not found in cart!");
+  }
+
+  // Redirect back to the cart page or to another appropriate page
+  res.redirect("/cart");
+};

@@ -36,13 +36,13 @@
     <div class="product-price"><%= item.product.price %></div>
     <div class="product-removal">
       <% console.log("fsdfdsfsdfs", item.product._id) %>
-      <form action="">
+      <form action="/cart/<%=item.product._id%>/update" method="POST">
         <div class="product-quantity">
           <!-- <input type="number" value="<%= item.quantity %>" min="1" max="<%= item.product.stockCount %>" /> -->
-          <input value="<%= item.quantity %>" name="quantity" id="stockCountInput" type="number" step="1" min="1" max="<%= item.product.stockCount %>" class="number-input" />
+          <input value="<%= item.quantity %>" name="quantity" class="stockCountInput" type="number" step="1" min="1" max="<%= item.product.stockCount %>" class="number-input" />
           <!-- <input type="number" value="1" min="1" max="item.product.stock" /> -->
         </div>
-        <button class="change-quantity">Update</button>
+        <button class="mx-5 change-quantity">Update</button>
       </form>
     </div>
     <% console.log("HISDHIOFJSDPJf"); %>

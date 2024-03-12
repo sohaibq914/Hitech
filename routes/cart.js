@@ -17,5 +17,6 @@ router
 
 router.route("/:id/add").post(isLoggedIn, catchAsync(cart.addProduct));
 router.route("/:id/remove").post(isLoggedIn, catchAsync(cart.removeProduct));
+router.route("/:id/update").post(isLoggedIn, catchAsync(cart.updateQuantity));
 
 module.exports = router;
