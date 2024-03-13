@@ -4,8 +4,12 @@ const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
 const nodemailer = require("nodemailer");
 
-module.exports.aboutus = (req, res) => {
-  res.render("app/aboutus");
+module.exports.about = (req, res) => {
+  res.render("app/about");
+};
+
+module.exports.contact = (req, res) => {
+  res.render("app/contact");
 };
 
 module.exports.createCheckoutSession = async (req, res) => {
