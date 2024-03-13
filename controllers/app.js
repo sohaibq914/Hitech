@@ -2,6 +2,8 @@ const Product = require("../models/product"); // the products exports model
 const Cart = require("../models/cart");
 const Stripe = require("stripe");
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+const nodemailer = require("nodemailer");
+
 module.exports.aboutus = (req, res) => {
   res.render("app/aboutus");
 };
@@ -70,14 +72,15 @@ module.exports.stripeWebhook = async (req, res) => {
       const session = event.data.object;
 
       // since cartItems is string, we going to parse it as JSON so we can manipulate it
-      console.log("ATTEMPTING TO PARSE", session.metadata.cartItems);
+      console.log("Type of cartItems:", typeof session.metadata.cartItems);
+      console.log(session.metadata.cartItems);
       const cartItems = JSON.parse(session.metadata.cartItems);
-      console.log("THESE ARE CART ITEMS", cartItems);
-      console.log("CURRENT USER!!!!", session.metadata.currentUser);
+      console.log("MY CURR USER", session.metadata.currentUser);
       const currentUser = JSON.parse(session.metadata.currentUser);
-      console.log("THIS IS CURRENT USER", currentUser);
       updateProductStock(cartItems);
+      await sendSuccessEmail("sohaibq914@gmail.com", currentUser, cartItems);
       await clearCart(currentUser);
+
       // handleCheckoutSessionCompleted(session);
 
       break;
@@ -137,5 +140,68 @@ async function clearCart(currentUser) {
     }
   } catch (error) {
     console.error("Error clearing the cart:", error);
+  }
+}
+
+async function sendSuccessEmail(toEmail, currentUser, cartItems) {
+  let htmlBody = `<p>Username: ${currentUser.username},</p>
+                  <p>Email: ${currentUser.email}</p>
+                  <p>Success Transaction!</p>
+                  <p>Here's a summary of the order:</p>
+                  <ul>`;
+
+  // Construct the list items for each cart item
+  let totalCost = 0;
+
+  for (const item of cartItems) {
+    const product = await Product.findById(item.id);
+
+    // Calculate the cost of this item (price * quantity)
+    let itemCost = product.price * item.quantity;
+
+    // Add the cost of this item to the total cost
+    totalCost += itemCost;
+    htmlBody += `<li>
+                   <strong>Name:</strong> ${product.name}<br />
+                   <strong>Description:</strong> ${product.description}<br />
+                   <strong>Price:</strong> $${product.price.toFixed(2)}<br />
+                   <strong>Quantity:</strong> ${item.quantity}<br />
+                   <strong>Cost:</strong> $${itemCost.toFixed(2)}
+                 </li>`;
+  }
+
+  htmlBody += `</ul>`;
+  htmlBody += `<p><strong>Total Cost:</strong> $${totalCost.toFixed(2)}</p>`;
+  let transporter = nodemailer.createTransport({
+    service: "gmail", // Use other email providers as needed
+    auth: {
+      user: process.env.EMAIL_USERNAME, // Your email address
+      pass: "fudx tkji fovu ldmn", // Your email password or app-specific password
+    },
+    tls: {
+      // Do not fail on invalid certs
+      rejectUnauthorized: false,
+    },
+  });
+
+  // Set up email data with unicode symbols
+  let mailOptions = {
+    from: process.env.EMAIL_USERNAME, // Sender address
+    to: toEmail, // List of receivers
+    subject: "Success Message", // Subject line
+    text: "Your email client does not support HTML.", // Plain text body
+    html: htmlBody, // HTML body
+
+    // html: "<b>Hello world?</b>", // You can also send HTML body
+  };
+
+  // Send mail with defined transport object
+  try {
+    let info = await transporter.sendMail(mailOptions);
+    console.log("Message sent: %s", info.messageId);
+    // Preview only available when sending through an Ethereal account
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  } catch (error) {
+    console.error("Failed to send email:", error);
   }
 }
