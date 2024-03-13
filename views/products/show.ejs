@@ -25,7 +25,11 @@
           <button class="plus">+</button>
           <%= product.stockCount %> available
           <!-- <a class="prod-cart"></a> -->
-          <button type="submit">Add to cart</button>
+          <% if (currentUser) { %>
+          <button class="btn btn-primary" type="submit">Add to cart</button>
+          <% } else {%>
+          <a href="/login" class="btn btn-primary">Add to cart</a>
+          <% } %>
         </form>
 
         <p class="category-text">Category: <span class="category-subtext">Hi-Tech Instruments</span></p>
