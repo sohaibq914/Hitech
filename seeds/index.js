@@ -16,7 +16,7 @@ db.once("open", function () {
   console.log("Database connected");
 });
 
-const productsArray = ["Agglutination Viewer", "Blood Bag Shaker", "Blood Bag Tube Stripper", "GENESIS Blood Collection Mixer", "Manual Plasma Extractor", "Masimo Radical 7 Pulse Oximeter Touchscreen", "Masimo Radical 7 Rainbow Pulse Oximeter", "Nellcor DOC-10 Spo2 Adapter Cable", "Nellcor DS-100A SpO2 Adult Finger Probe Sensor Cable", "Welch Allyn 02895-000 Oral Thermometer Probe for Suretemp 690 & 692"];
+const productsArray = ["Agglutination Viewer", "Blood Bag Shaker", "Blood Bag Tube Stripper", "GENESIS Blood Collection Mixer", "Manual Plasma Extractor", "Masimo Radical 7 Pulse Oximeter Touchscreen", "Masimo Radical 7 Rainbow Pulse Oximeter", "Nellcor DOC-10 Spo2 Adapter Cable", "Nellcor DS-100A SpO2 Adult Finger Probe Sensor Cable", "Welch Allyn 02895-000 Oral Thermometer Probe for Suretemp 690 & 692", "Nellcor DS-100A SpO2 Adult Finger Probe Sensor Cable", "Welch Allyn 02895-000 Oral Thermometer Probe for Suretemp 690 & 692", "Nellcor DS-100A SpO2 Adult Finger Probe Sensor Cable", "Welch Allyn 02895-000 Oral Thermometer Probe for Suretemp 690 & 692"];
 
 const seedDB = async () => {
   await Product.deleteMany({}); // Delete all existing products

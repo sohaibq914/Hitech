@@ -12,8 +12,8 @@
     </select>
   </div>
 
-  <div class="row">
-    <% for (product of products) {%>
+  <div class="row" id="products-container">
+    <% for (product of products.docs) {%>
     <div class="col-6 col-lg-3">
       <div class="prod-container">
         <a href="/products/<%=product._id%>">
@@ -32,8 +32,14 @@
     </div>
     <% } %>
   </div>
+  <div class="text-center mb-5">
+    <a class="btn btn-primary" id="paginate" href="/products?page=<%= products.nextPage %>">View More</a>
+  </div>
 
-  <div class="page-numbers">
+  <!-- will not work after implementing helmet, will need to whitelist jquery in options -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="/js/pagination.js"></script>
+  <!-- <div class="page-numbers">
     <a href="#">
       <div class="page-indicator">
         <p>1</p>
@@ -50,5 +56,5 @@
         <p><i class="fa-solid fa-arrow-right"></i></p>
       </div>
     </a>
-  </div>
+  </div> -->
 </div>

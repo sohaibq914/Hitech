@@ -2,8 +2,20 @@ const Product = require("../models/product"); // the products exports model
 const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
-  const products = await Product.find({}); // get all products
-  res.render("products/index", { products });
+  // on first load, if no query string, get all products
+  if (!req.query.page) {
+    const products = await Product.paginate({}); // get all products
+    res.render("products/index", { products });
+  } else {
+    const { page } = req.query;
+    const products = await Product.paginate(
+      {},
+      {
+        page,
+      }
+    ); // get all products
+    res.status(200).json(products);
+  }
 };
 
 module.exports.renderNewForm = (req, res) => {

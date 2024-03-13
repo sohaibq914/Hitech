@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const mongoosePaginate = require("mongoose-paginate-v2");
 
 // we wanted a virtual property so we had define an ImageSchema separate from the CampgroundSchema
 const ImageSchema = new Schema({
@@ -39,6 +40,8 @@ const ProductSchema = new Schema(
   },
   opts
 );
+
+ProductSchema.plugin(mongoosePaginate);
 
 // name of model is products (mongoose makes it plural and lowercase)
 module.exports = mongoose.model("Product", ProductSchema);
