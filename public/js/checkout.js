@@ -3,13 +3,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const stripe = Stripe("pk_test_51OsxpiKUdAWFlxominpWZMk8mgML54sMMhObcU0coGUJKK9unpB8pcOLB01gdmq3ozIhzZzvmh7Y8QnzfHzKXa8c00UrXZYB63");
 
   button.addEventListener("click", async () => {
-    alert("YOO");
     // Ensure 'cart' is defined and accessible here
     const cartItems = JSON.parse(button.getAttribute("data-cart-items"));
-    console.log("BLAH ", cartItems); // Add this line to diagnose
 
     const currentUser = JSON.parse(button.getAttribute("current-user"));
-    console.log("BLAHHH ", currentUser); // Add this line to diagnose
 
     fetch("/create-checkout-session", {
       method: "POST",

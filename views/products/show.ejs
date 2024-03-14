@@ -34,7 +34,7 @@
 
         <p class="category-text">Category: <span class="category-subtext">Hi-Tech Instruments</span></p>
 
-        <% console.log(product.author); %> <% if (product.author.username === "admin") {%>
+        <% console.log(product.author); %> <% if (currentUser.username === "admin") {%>
         <a class="card-link btn btn-info" href="/products/<%=product._id%>/edit">Edit</a>
         <form class="d-inline" action="/products/<%=product._id%>?_method=DELETE" method="POST">
           <button class="btn btn-danger">Delete</button>

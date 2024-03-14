@@ -36,7 +36,7 @@ module.exports.productSchema = Joi.object({
     stockCount: Joi.number().required().min(0),
     // image: Joi.string().required(),
     description: Joi.string().required().escapeHTML(),
-  }).required(), // saying the campground is required
+  }).required(),
   deleteImages: Joi.array(),
   features: Joi.array().required(), // putting it here so it's required and then putting it into features array model later
 });

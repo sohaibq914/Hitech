@@ -83,6 +83,7 @@ module.exports.stripeWebhook = async (req, res) => {
       const currentUser = JSON.parse(session.metadata.currentUser);
       updateProductStock(cartItems);
       await sendSuccessEmail("sohaibq914@gmail.com", currentUser, cartItems);
+      console.log("ABOUT TO CLEARN CARTTTT");
       await clearCart(currentUser);
 
       // handleCheckoutSessionCompleted(session);
@@ -95,6 +96,21 @@ module.exports.stripeWebhook = async (req, res) => {
 
   // Return a response to acknowledge receipt of the event
   res.json({ received: true });
+};
+
+module.exports.paypalPostPayment = async (req, res) => {
+  console.log("PAYPAL POST PAYMENT PAYPAL POST PAYMENT PAYPAL POST PAYMENT PAYPAL POST PAYMENT");
+  const cartItems = req.body.cartItems;
+  const currentUser = req.body.currentUser;
+
+  try {
+    // Update the product stock
+    await updateProductStock(cartItems);
+    await clearCart(currentUser);
+    await sendSuccessEmail("sohaibq914@gmail.com", currentUser, cartItems);
+  } catch (error) {
+    throw error;
+  }
 };
 
 async function updateProductStock(cartItems) {

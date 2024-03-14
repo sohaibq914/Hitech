@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const mongoosePaginate = require("mongoose-paginate-v2");
 
-// we wanted a virtual property so we had define an ImageSchema separate from the CampgroundSchema
+// we wanted a virtual property so we had define an ImageSchema separate from the ProductSchema
 const ImageSchema = new Schema({
   url: String,
   filename: String,

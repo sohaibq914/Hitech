@@ -15,7 +15,6 @@ const ExpressError = require("./utils/ExpressError");
 
 const dbUrl = "mongodb://127.0.0.1:27017/hitech"; // for some reason, this can't be localhost
 const secret = "thisshouldbeabettersecret!";
-// const { campgroundSchema } = require("./schemas.js");
 // const catchAsync = require("./utils/catchAsync");
 // const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");

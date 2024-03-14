@@ -1,4 +1,6 @@
 <% layout("layouts/boilerplate") %>
+<script src="https://www.paypal.com/sdk/js?client-id=Ace9664OgqqECcp2n2RicpH8zLxcJu3lKU0X8Spf-q1YkNoWUx3GvGwff89CRTzjCbYcvG6dCFSar8Zs"></script>
+
 <link rel="stylesheet" href="/css/cart.css" class="rel" />
 
 <h1 class="mt-5">Shopping Cart</h1>
@@ -68,14 +70,68 @@
 
     <div class="totals-item totals-item-total">
       <label>Grand Total</label>
-      <div class="totals-value" id="cart-total"><%= (subTotal * 1.05).toFixed(2) %></div>
+      <% let grandTotal = (subTotal * 1.05).toFixed(2) %>
+
+      <div class="totals-value" id="cart-total"><%= grandTotal %></div>
     </div>
   </div>
-  <% console.log(JSON.stringify(cart.items.map(item => ({ id: item.product._id, quantity: item.quantity })))) %> <% console.log("IN VIEW", currentUser) %>
-  <button class="checkout" current-user="<%= JSON.stringify(currentUser) %>" data-cart-items="<%= JSON.stringify(cart.items.map(item => ({ id: item.product._id, quantity: item.quantity }))) %>">Checkout</button>
-</div>
+  <!-- <button class="checkout" current-user="<%= JSON.stringify(currentUser) %>" data-cart-items="<%= JSON.stringify(cart.items.map(item => ({ id: item.product._id, quantity: item.quantity }))) %>">Checkout</button> -->
 
-<!-- <script>
+  <div class="row">
+    <div class="col-lg-4">
+      <!-- Your totals content here -->
+    </div>
+    <div class="col-lg-8 d-flex justify-content-end">
+      <div class="" <%="JSON.stringify(currentUser)" %>" data-cart-items="<%= JSON.stringify(cart.items.map(item => ({ id: item.product._id, quantity: item.quantity }))) %>" id="paypal-button-container"></div>
+    </div>
+  </div>
+
+  <script>
+    var grandTotal = "<%= grandTotal %>";
+    const button = document.querySelector("#paypal-button-container"); // Use querySelector instead
+
+    paypal
+      .Buttons({
+        createOrder: function (data, actions) {
+          // Set up the transaction
+          return actions.order.create({
+            purchase_units: [
+              {
+                amount: {
+                  value: grandTotal, // Can dynamically set the total amount here
+                },
+              },
+            ],
+          });
+        },
+        onApprove: function (data, actions) {
+          // Capture the funds from the transaction
+          return actions.order.capture().then(function (details) {
+            const cartItems = JSON.parse(button.getAttribute("data-cart-items"));
+
+            const currentUser = JSON.parse(button.getAttribute("current-user"));
+            console.log("CURRRRRR", currentUser);
+            console.log("CARTTTTT", cartItems);
+            // Show a success message to the buyer
+            fetch("/paypal", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                cartItems: cartItems,
+                currentUser: currentUser,
+              }),
+            });
+            alert("Transaction completed by " + details.payer.name.given_name);
+            // Optionally, you can redirect the buyer to a confirmation page
+          });
+        },
+      })
+      .render("#paypal-button-container");
+  </script>
+
+  <!-- <script>
   document.addEventListener("DOMContentLoaded", function () {
     alert("HI");
     const button = document.querySelector(".checkout"); // Use querySelector instead
@@ -101,7 +157,7 @@
   });
 </script> -->
 
-<!-- <script>
+  <!-- <script>
   document.addEventListener("DOMContentLoaded", function () {
     const button = document.querySelector(".checkout");
     const stripe = Stripe("your_publishable_key_here");
@@ -123,3 +179,4 @@
     });
   });
 </script> -->
+</div>
