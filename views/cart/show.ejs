@@ -3,7 +3,20 @@
 <% } else {%>
 <script src="https://www.paypal.com/sdk/js?client-id=<%= process.env.PAYPAL_CLIENT_ID%>"></script>
 <% }%>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const quantityInputs = document.querySelectorAll(".stockCountInput");
 
+    quantityInputs.forEach((input) => {
+      let maxStock = parseInt(input.getAttribute("max"), 10);
+      let currentQuantity = parseInt(input.value, 10);
+
+      if (currentQuantity > maxStock) {
+        input.value = maxStock; // Adjusts the quantity to max stock if over
+      }
+    });
+  });
+</script>
 <link rel="stylesheet" href="/css/cart.css" class="rel" />
 
 <h1 class="mt-5">Shopping Cart</h1>
