@@ -1,5 +1,4 @@
 const BaseJoi = require("joi");
-console.log("BEFORE JOI");
 
 // validations on the server side (can't bypass even thru postman)
 // not a mongoose schema... this will validate before saving it to mongoose
@@ -27,7 +26,6 @@ const extension = (joi) => ({
 });
 
 const Joi = BaseJoi.extend(extension);
-console.log("BEFORE JOI");
 
 module.exports.productSchema = Joi.object({
   product: Joi.object({

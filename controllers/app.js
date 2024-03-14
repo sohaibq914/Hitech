@@ -66,8 +66,6 @@ module.exports.createCheckoutSession = async (req, res) => {
 module.exports.stripeWebhook = async (req, res) => {
   // const sig = req.headers["stripe-signature"];
 
-  // console.log("Type of cartItems:", typeof cartItems);
-  // console.log("Is cartItems an array?:", Array.isArray(cartItems));
   const event = req.body;
 
   // Handle the event
@@ -76,14 +74,10 @@ module.exports.stripeWebhook = async (req, res) => {
       const session = event.data.object;
 
       // since cartItems is string, we going to parse it as JSON so we can manipulate it
-      console.log("Type of cartItems:", typeof session.metadata.cartItems);
-      console.log(session.metadata.cartItems);
       const cartItems = JSON.parse(session.metadata.cartItems);
-      console.log("MY CURR USER", session.metadata.currentUser);
       const currentUser = JSON.parse(session.metadata.currentUser);
       updateProductStock(cartItems);
       await sendSuccessEmail("sohaibq914@gmail.com", currentUser, cartItems);
-      console.log("ABOUT TO CLEARN CARTTTT");
       await clearCart(currentUser);
 
       // handleCheckoutSessionCompleted(session);
@@ -99,10 +93,8 @@ module.exports.stripeWebhook = async (req, res) => {
 };
 
 module.exports.paypalPostPayment = async (req, res) => {
-  console.log("PAYPAL POST PAYMENT PAYPAL POST PAYMENT PAYPAL POST PAYMENT PAYPAL POST PAYMENT");
   const cartItems = req.body.cartItems;
   const currentUser = req.body.currentUser;
-  console.log("THIS IS CURR USER", currentUser);
 
   try {
     // Update the product stock
@@ -135,8 +127,6 @@ async function updateProductStock(cartItems) {
         await product.save();
       })
     );
-
-    console.log("Product stock updated successfully.");
   } catch (error) {
     console.error("Failed to update product stock:", error);
     throw error; // Rethrow or handle as needed

@@ -37,7 +37,6 @@
     </div>
     <div class="product-price"><%= item.product.price %></div>
     <div class="product-removal">
-      <% console.log("fsdfdsfsdfs", item.product._id) %>
       <form action="/cart/<%=item.product._id%>/update" method="POST">
         <div class="product-quantity">
           <!-- <input type="number" value="<%= item.quantity %>" min="1" max="<%= item.product.stockCount %>" /> -->
@@ -47,9 +46,7 @@
         <button class="mx-5 change-quantity">Update</button>
       </form>
     </div>
-    <% console.log("HISDHIOFJSDPJf"); %>
     <div class="product-removal">
-      <% console.log("fsdfdsfsdfs", item.product._id) %>
       <form action="/cart/<%=item.product._id%>/remove" method="POST">
         <button class="remove-product">Remove</button>
       </form>
@@ -110,8 +107,7 @@
             const cartItems = JSON.parse(button.getAttribute("data-cart-items"));
 
             const currentUser = JSON.parse(button.getAttribute("current-user"));
-            console.log("CURRRRRR", currentUser);
-            console.log("CARTTTTT", cartItems);
+
             // Show a success message to the buyer
             fetch("/paypal", {
               method: "POST",

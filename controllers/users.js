@@ -28,7 +28,6 @@ module.exports.login = // Now we can use res.locals.returnTo to redirect the use
   (req, res) => {
     req.flash("success", "Welcome Back!");
     // res.locals.returnTo url was stored in storeReturnTo middleware
-    console.log("L:DSFJL:SDFJ", res.locals.returnTo);
     const redirectUrl = res.locals.returnTo || "/products";
     res.redirect(redirectUrl);
   };

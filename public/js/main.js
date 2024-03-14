@@ -127,4 +127,3 @@ priceElements.forEach(function (element) {
 });
 
 // Now, productPrices array contains the prices of all products
-console.log(productPrices);

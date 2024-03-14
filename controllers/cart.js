@@ -28,7 +28,6 @@ module.exports.addProduct = async (req, res) => {
     await user.save();
   }
 
-  console.log("YESIRR", cart.items);
   const productIndex = cart.items.findIndex((item) => item.product.equals(product._id));
 
   // if in cart
@@ -39,7 +38,6 @@ module.exports.addProduct = async (req, res) => {
   else {
     cart.items.push({ product: product._id, quantity: parseInt(quantity, 10) });
   }
-  console.log("BEFORRREEE", cart);
   await cart.save();
 
   req.flash("success", "Product added to cart successfully!");
@@ -72,7 +70,6 @@ module.exports.removeProduct = async (req, res) => {
   const productIndex = cart.items.findIndex((item) => item.product.equals(product._id));
 
   // If the product is found in the cart, remove it
-  console.log("BEFORE REMOVAL", cart);
   if (productIndex > -1) {
     cart.items.splice(productIndex, 1); // Remove the product from the items array
     await cart.save(); // Save the updated cart
@@ -81,7 +78,6 @@ module.exports.removeProduct = async (req, res) => {
     // Product was not found in the cart
     req.flash("error", "Product not found in cart!");
   }
-  console.log("AFTER REMOVAL", cart);
 
   // Redirect back to the cart page or to another appropriate page
   res.redirect("/cart");

@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   numberInputs.forEach((input) => {
     input.addEventListener("input", function () {
-      console.log("VALUE CHANGED");
       let value = parseInt(this.value, 10);
 
       if (isNaN(value)) {

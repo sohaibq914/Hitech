@@ -7,7 +7,6 @@ module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
     // req.originalURL is from passport
     // it gets filled with URL you were going to when you were not logged in
-    console.log(req.originalUrl); // /products/new
     req.session.returnTo = req.originalUrl; // stores the url, user was trying to go to
     req.flash("error", "You must be signed in first!");
     return res.redirect("/login");
@@ -17,7 +16,6 @@ module.exports.isLoggedIn = (req, res, next) => {
 
 module.exports.storeReturnTo = (req, res, next) => {
   if (req.session.returnTo) {
-    console.log("IM HERERER", req.session.returnTo);
     res.locals.returnTo = req.session.returnTo;
   }
   next();
@@ -25,7 +23,6 @@ module.exports.storeReturnTo = (req, res, next) => {
 
 module.exports.validateProduct = (req, res, next) => {
   const { error } = productSchema.validate(req.body);
-  console.log("after validation");
   if (error) {
     // getting the message of every error in object
     const msg = error.details.map((el) => el.message).join(",");
@@ -38,7 +35,6 @@ module.exports.validateProduct = (req, res, next) => {
 // so that only the admin can edit it
 // can't bypass even thru postman
 module.exports.isAdmin = async (req, res, next) => {
-  console.log("USERRR", req.user);
   if (req.user.username !== "admin") {
     req.flash("error", "You do not have permission to do that!");
     return res.redirect(`/products`);

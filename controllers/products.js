@@ -24,7 +24,6 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createProduct = async (req, res, next) => {
-  console.log("inside createProduct");
   const product = new Product(req.body.product);
   product.images = req.files.map((f) => ({ url: f.path, filename: f.filename }));
   let incomingFeatures = req.body.features;
@@ -38,11 +37,9 @@ module.exports.createProduct = async (req, res, next) => {
   }
 
   product.features.push();
-  console.log("YOOO", req.user._id);
   product.author = req.user._id; // used req.user from passport
   await product.save();
-  console.log(product);
-  console.log(req.body.features);
+
   req.flash("success", "Successfully made a new product!");
 
   res.redirect(`/products/${product._id}`); // will trigger the showProduct function
@@ -78,8 +75,6 @@ module.exports.renderEditForm = async (req, res) => {
 
 module.exports.updateProduct = async (req, res) => {
   const { id } = req.params;
-  console.log(req.body.product);
-  console.log({ ...req.body.product });
   const updateData = req.body.features ? { ...req.body.product, features: req.body.features } : { ...req.body.product };
 
   const product = await Product.findByIdAndUpdate(id, updateData, { new: true }); // Include { new: true } to return the updated document

@@ -15,5 +15,3 @@ function previewMultiple(event) {
     form.innerHTML += '<img src="' + urls + '">';
   }
 }
-
-console.log("HI");
