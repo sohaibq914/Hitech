@@ -60,11 +60,15 @@ window.onload = function () {
 
   // nested menu appear through click on mobile screen
   const navbar = document.querySelector(".navbar");
-  const lis = navbar.querySelectorAll("li");
+  const lis = navbar.querySelectorAll("li a i");
   lis.forEach((x) => {
     x.addEventListener("click", (e) => {
-      let ul = x.querySelector(":scope > ul");
+      let ul = x.parentElement.parentElement.querySelector(":scope > ul");
       if (ul) {
+        // Edit: added prevent default for smaller devices so it won't take us to the products page on clicking
+        if (window.innerWidth <= 630) {
+          e.preventDefault();
+        }
         e.stopPropagation();
         x.classList.toggle("active");
         ul.classList.toggle("active");

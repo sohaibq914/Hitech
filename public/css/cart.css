@@ -25,13 +25,19 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
   width: 10%;
 }
 
+/* Edit: no need to have a fixed width for the input element inside the form */
+form .product-quantity {
+  width: auto;
+}
+
 .product-removal {
   float: left;
   width: 9%;
 }
 
 .product-line-price {
-  float: left;
+  /* Edit: float right so it always stays on the right side */
+  float: right;
   width: 12%;
   text-align: right;
 }
@@ -77,9 +83,15 @@ Side note: I know that this style of nesting in SASS doesn't result in the most 
 
 /* Body/Header stuff */
 body {
-  padding: 0px 30px 30px 20px;
+  /* Edit: removed the padding from the whole body and given it to content so there is no whitespace */
+  /* padding: 0px 30px 30px 20px; */
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 100;
+}
+
+/* Edit: given padding to the content only */
+.content {
+  padding: 0px 30px 30px 20px;
 }
 
 h1 {
@@ -192,6 +204,14 @@ label {
   background-color: #494;
 }
 
+/* Edit: cart buttons */
+/* small desktops and large tablets */
+@media screen and (max-width: 1100px) {
+  .product-quantity {
+    width: auto;
+  }
+}
+
 /* Make adjustments for tablet */
 @media screen and (max-width: 650px) {
   .shopping-cart {
@@ -216,15 +236,22 @@ label {
   }
   .product-price {
     clear: both;
-    width: 70px;
+    /* Edit: set width to auto and add margin + padding */
+    width: auto;
+    margin-right: 6px;
+    padding-top: 3px;
   }
+  /* Edit: set width to auto */
   .product-quantity {
-    width: 100px;
+    width: auto;
   }
+  /* Edit: reduced the left margin by 10px */
   .product-quantity input {
-    margin-left: 20px;
+    margin-left: 10px;
   }
-  .product-quantity:before {
+
+  /* Edit: added form before the selector so it will only add x on element inside the form */
+  form .product-quantity:before {
     content: "x";
   }
   .product-removal {
@@ -235,6 +262,7 @@ label {
     width: 70px;
   }
 }
+
 /* Make more adjustments for phone */
 @media screen and (max-width: 350px) {
   .product-removal {

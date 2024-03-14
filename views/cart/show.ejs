@@ -39,14 +39,14 @@
       <p class="product-description"><%= item.product.description %></p>
     </div>
     <div class="product-price"><%= item.product.price %></div>
-    <div class="product-removal">
-      <form action="/cart/<%=item.product._id%>/update" method="POST">
+    <div class="product-quantity">
+      <form action="/cart/<%=item.product._id%>/update" method="POST" class="d-flex">
         <div class="product-quantity">
           <!-- <input type="number" value="<%= item.quantity %>" min="1" max="<%= item.product.stockCount %>" /> -->
           <input value="<%= item.quantity %>" name="quantity" class="stockCountInput" type="number" step="1" min="1" max="<%= item.product.stockCount %>" class="number-input" />
           <!-- <input type="number" value="1" min="1" max="item.product.stock" /> -->
         </div>
-        <button class="mx-5 change-quantity">Update</button>
+        <button class="mx-2 change-quantity">Update</button>
       </form>
     </div>
     <div class="product-removal">
