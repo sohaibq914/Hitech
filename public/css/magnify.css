@@ -24,7 +24,8 @@ html.magnifying > body {
   width: auto;
   height: auto;
   box-shadow: none;
-  display: inline-block;
+  /* Edit: changed display to block from inline-block so it takes full height and there is no whitespace */
+  display: block;
   z-index: inherit;
 }
 .magnify > .magnify-lens { /* Magnifying lens */
