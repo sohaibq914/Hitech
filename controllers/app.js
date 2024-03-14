@@ -95,13 +95,13 @@ module.exports.stripeWebhook = async (req, res) => {
 module.exports.paypalPostPayment = async (req, res) => {
   const cartItems = req.body.cartItems;
   const currentUser = req.body.currentUser;
-
   try {
     // Update the product stock
+    await sendSuccessEmail("sohaibq914@gmail.com", currentUser, cartItems);
     await updateProductStock(cartItems);
     await clearCart(currentUser);
-    await sendSuccessEmail("sohaibq914@gmail.com", currentUser, cartItems);
   } catch (error) {
+    console.log("Failed to process payment:", error);
     throw error;
   }
 };

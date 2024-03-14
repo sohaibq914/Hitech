@@ -2,6 +2,10 @@ const Product = require("../models/product"); // the products exports model
 const { cloudinary } = require("../cloudinary");
 
 module.exports.index = async (req, res) => {
+  if (req.query.success) {
+    req.flash("success", "Purchase was successful!");
+    res.redirect(`/products`);
+  }
   // on first load, if no query string, get all products
   if (!req.query.page) {
     const products = await Product.paginate({}, { limit: 12 }); // get all products

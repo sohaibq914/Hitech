@@ -51,6 +51,7 @@ module.exports.showCart = async (req, res) => {
       path: "author", // populate the authors inside the product
     },
   });
+
   res.render("cart/show", { cart });
 };
 
