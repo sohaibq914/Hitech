@@ -4,7 +4,7 @@ const { cloudinary } = require("../cloudinary");
 module.exports.index = async (req, res) => {
   // on first load, if no query string, get all products
   if (!req.query.page) {
-    const products = await Product.paginate({}); // get all products
+    const products = await Product.paginate({}, { limit: 12 }); // get all products
     res.render("products/index", { products });
   } else {
     const { page } = req.query;
@@ -12,6 +12,7 @@ module.exports.index = async (req, res) => {
       {},
       {
         page,
+        limit: 12,
       }
     ); // get all products
     res.status(200).json(products);
@@ -49,6 +50,7 @@ module.exports.createProduct = async (req, res, next) => {
 };
 
 module.exports.showProduct = async (req, res) => {
+  const products = await Product.paginate({}, { limit: 12 });
   const product = await Product.findById(req.params.id)
     .populate({
       path: "reviews", // populate the reviews
@@ -61,7 +63,7 @@ module.exports.showProduct = async (req, res) => {
     req.flash("error", "Cannot find that product!");
     return res.redirect("/products");
   }
-  res.render("products/show", { product });
+  res.render("products/show", { product, products });
 };
 
 module.exports.renderEditForm = async (req, res) => {
