@@ -13,7 +13,7 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError");
 
-const secret = "thisshouldbeabettersecret!";
+const secret = process.env.SECRET || "thisshouldbeabettersecret!";
 // const catchAsync = require("./utils/catchAsync");
 // const ExpressError = require("./utils/ExpressError");
 const methodOverride = require("method-override");
