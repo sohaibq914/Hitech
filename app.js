@@ -13,7 +13,6 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const ExpressError = require("./utils/ExpressError");
 
-const dbUrl = "mongodb://127.0.0.1:27017/hitech"; // for some reason, this can't be localhost
 const secret = "thisshouldbeabettersecret!";
 // const catchAsync = require("./utils/catchAsync");
 // const ExpressError = require("./utils/ExpressError");
@@ -23,19 +22,19 @@ const LocalStrategy = require("passport-local");
 const User = require("./models/user");
 const Product = require("./models/product"); // the product exports model
 
+// const helmet = require("helmet");
+const mongoSanitize = require("express-mongo-sanitize");
+
 const userRoutes = require("./routes/users");
 const productRoutes = require("./routes/products");
 const reviewRoutes = require("./routes/reviews");
 const cartRoutes = require("./routes/cart");
 const appRoutes = require("./routes/app");
 
-const Stripe = require("stripe");
-const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
-
 const MongoStore = require("connect-mongo");
-
+const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/hitech";
 // for some reason, this can't be localhost
-mongoose.connect("mongodb://127.0.0.1:27017/hitech", {
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   // useCreateIndex: true // no longer supported
@@ -76,9 +75,12 @@ app.use(session(sessionConfig));
 
 app.use(flash());
 
+// app.use(helmet());
+
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views")); // absolute path, tell express where to find views
+app.use(mongoSanitize());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));

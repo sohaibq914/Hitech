@@ -7,7 +7,7 @@
     <form action="/products/<%=product._id%>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
       <div class="mb-3">
         <label class="form-label" for="name">Product Name</label>
-        <input class="form-control" type="text" id="name" name="product[name]" required />
+        <input class="form-control" type="text" value="<%= product.name %>" id="name" name="product[name]" required />
         <!-- validation text thru bootstrap -->
         <div class="valid-feedback">Looks good!</div>
       </div>
@@ -27,14 +27,24 @@
 
         <div class="input-group">
           <span class="input-group-text" id="price-label">$</span>
-          <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price" aria-describedby="price-label" name="product[price]" required />
+          <input type="text" class="form-control" value="<%= product.price %>" ="price" placeholder="0.00" aria-label="price" aria-describedby="price-label" name="product[price]" required />
+          <div class="valid-feedback">Looks good!</div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label" for="stockCount">Stock Count</label>
+
+        <div class="input-group">
+          <span class="input-group-text" id="stockCount-label">#</span>
+          <input value="<%= product.stockCount %>" type="number" step="1" min="0" class="form-control" id="stockCount" placeholder="0.00" aria-label="stockCount" aria-describedby="stockCount-label" name="product[stockCount]" required />
           <div class="valid-feedback">Looks good!</div>
         </div>
       </div>
 
       <div class="mb-3">
         <label class="form-label" for="description">Description</label>
-        <textarea class="form-control" type="text" id="description" name="product[description]" required></textarea>
+        <textarea class="form-control" type="text" id="description" name="product[description]" required><%= product.description %></textarea>
         <div class="valid-feedback">Looks good!</div>
       </div>
 
