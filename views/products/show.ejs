@@ -1,6 +1,31 @@
 <% layout("layouts/boilerplate") %>
 <link rel="stylesheet" href="/css/stars.css" />
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const quantityInput = document.querySelector(".stockCountInput");
+    if (!quantityInput) return; // Early return if the element is not found
 
+    const maxStock = parseInt(quantityInput.getAttribute("max"), 10);
+
+    // Function to adjust the quantity based on stock count
+    const adjustQuantity = () => {
+      let currentQuantity = parseInt(quantityInput.value, 10);
+      if (currentQuantity > maxStock) {
+        quantityInput.value = maxStock; // Adjust to max stock if over
+        alert("Quantity exceeds available stock. Adjusted to maximum available.");
+      } else if (currentQuantity < 1) {
+        // Ensure quantity cannot be less than 1
+        quantityInput.value = 1;
+      }
+    };
+
+    // Attach change event listener to quantity input
+    quantityInput.addEventListener("change", adjustQuantity);
+
+    // Adjust quantity on page load to ensure it does not exceed stock
+    adjustQuantity();
+  });
+</script>
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 col-lg-6">

@@ -32,7 +32,9 @@ module.exports.addProduct = async (req, res) => {
 
   // if in cart
   if (productIndex > -1) {
-    cart.items[productIndex].quantity += parseInt(quantity, 10);
+    if (product.stockCount > cart.items[productIndex].quantity + parseInt(quantity, 10)) {
+      cart.items[productIndex].quantity += parseInt(quantity, 10);
+    }
   }
   // is not already in cart
   else {
