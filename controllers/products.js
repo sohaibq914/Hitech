@@ -80,7 +80,9 @@ module.exports.updateProduct = async (req, res) => {
   const { id } = req.params;
   console.log(req.body.product);
   console.log({ ...req.body.product });
-  const product = await Product.findByIdAndUpdate(id, { ...req.body.product });
+  const updateData = req.body.features ? { ...req.body.product, features: req.body.features } : { ...req.body.product };
+
+  const product = await Product.findByIdAndUpdate(id, updateData, { new: true }); // Include { new: true } to return the updated document
   const imgs = req.files.map((f) => ({ url: f.path, filename: f.filename }));
   // spreading to not make array inside array instead just adding object to original array
   product.images.push(...imgs);

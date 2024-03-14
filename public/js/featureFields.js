@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <input type="text" class="form-control" name="features[]">
             <button class="btn btn-danger remove-feature" style="width: 35px;" type="button">-</button>
         `;
-    container.appendChild(newInput);
+    container.insertBefore(newInput, addFeatureBtn);
   });
 
   container.addEventListener("click", function (event) {

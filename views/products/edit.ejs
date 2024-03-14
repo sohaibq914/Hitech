@@ -13,13 +13,15 @@
       </div>
 
       <!-- Other fields for image, price, description -->
-      <div class="mb-3 features-container">
+      <div class="features-container mb-3">
         <label class="form-label">Features</label>
+        <% if (product.features && product.features.length > 0) { %> <% product.features.forEach(function(feature, index) { %>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="features[]" required />
-          <button class="btn btn-primary add-feature" type="button">+</button>
-          <div class="valid-feedback">Looks good!</div>
+          <input type="text" class="form-control" name="features[]" value="<%= feature %>" />
+          <button class="btn btn-danger remove-feature" style="width: 35px" type="button">-</button>
         </div>
+        <% }); %> <% } %>
+        <button class="btn btn-info add-feature" type="button">Add More Features</button>
       </div>
 
       <div class="mb-3">
