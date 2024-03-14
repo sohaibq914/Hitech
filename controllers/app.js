@@ -97,7 +97,7 @@ module.exports.paypalPostPayment = async (req, res) => {
   const currentUser = req.body.currentUser;
   try {
     // Update the product stock
-    await sendSuccessEmail("sohaibq914@gmail.com", currentUser, cartItems);
+    await sendSuccessEmail("hitech.taha@gmail.com", currentUser, cartItems);
     await updateProductStock(cartItems);
     await clearCart(currentUser);
   } catch (error) {

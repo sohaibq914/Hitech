@@ -1,4 +1,4 @@
-<% layout("layouts/boilerplate") %> <% if (process.env.NODE_ENV !== "production") {%> <%console.log("DEVELOPMENT MODE"); %>
+<% layout("layouts/boilerplate") %> <% if (process.env.NODE_ENV !== "production") {%> <%console.log("DEVELOPMENT MODE");%> <% console.log(process.env.NODE_ENV) %>
 <script src="https://www.paypal.com/sdk/js?client-id=Ace9664OgqqECcp2n2RicpH8zLxcJu3lKU0X8Spf-q1YkNoWUx3GvGwff89CRTzjCbYcvG6dCFSar8Zs"></script>
 <% } else {%>
 <script src="https://www.paypal.com/sdk/js?client-id=<%= process.env.PAYPAL_CLIENT_ID%>"></script>
@@ -18,7 +18,7 @@
     <label class="product-line-price">Total</label>
   </div>
 
-  <ul>
+  <!-- <ul>
     <% cart.items.forEach(function(item) { %>
     <li>
       Name: <%= item.product.name %><br />
@@ -27,12 +27,17 @@
       Quantity: <%= item.quantity %>
     </li>
     <% }); %>
-  </ul>
+  </ul> -->
   <% let subTotal = 0; %> <% cart.items.forEach(function(item) { %>
 
   <div class="product">
     <div class="product-image">
-      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg" />
+      <% if (item.product.images[0] && item.product.images[0].url) { %>
+      <img src="<%= item.product.images[0].url%>" />
+      <% } else { %>
+      <img src="https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg" />
+      <% } %>
+      <!-- <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg" /> -->
     </div>
     <div class="product-details">
       <div class="product-title"><%= item.product.name %></div>
