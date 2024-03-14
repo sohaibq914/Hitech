@@ -1309,9 +1309,10 @@ button.hamburger {
     margin-top: 60px;
   }
 
+  /* Edit: Removed the extra margins so it doesn't appear stretched on mobile */
   .related-prod {
-    margin-left: 40px;
-    margin-right: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
   .related-prod-heading {
