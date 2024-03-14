@@ -80,7 +80,7 @@ form .product-quantity {
 body {
   /* Edit: removed the padding from the whole body and given it to content so there is no whitespace */
   /* padding: 0px 30px 30px 20px; */
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: $font-default;
   font-weight: 100;
 }
 
