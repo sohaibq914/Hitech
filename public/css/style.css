@@ -303,6 +303,12 @@ button.hamburger {
 }
 
 @media (min-width: 992px) {
+  #paypal-button-container {
+    /* navbar is relative bc styled by bootstrap */
+    float: right;
+    /* right: 0; */
+    width: 40%;
+  }
   .mobile-nav {
     display: none;
   }

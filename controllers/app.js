@@ -102,6 +102,7 @@ module.exports.paypalPostPayment = async (req, res) => {
   console.log("PAYPAL POST PAYMENT PAYPAL POST PAYMENT PAYPAL POST PAYMENT PAYPAL POST PAYMENT");
   const cartItems = req.body.cartItems;
   const currentUser = req.body.currentUser;
+  console.log("THIS IS CURR USER", currentUser);
 
   try {
     // Update the product stock

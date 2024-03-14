@@ -81,8 +81,8 @@
     <div class="col-lg-4">
       <!-- Your totals content here -->
     </div>
-    <div class="col-lg-8 d-flex justify-content-end">
-      <div class="" <%="JSON.stringify(currentUser)" %>" data-cart-items="<%= JSON.stringify(cart.items.map(item => ({ id: item.product._id, quantity: item.quantity }))) %>" id="paypal-button-container"></div>
+    <div class="col-lg-8 justify-content-end">
+      <div current-user="<%=JSON.stringify(currentUser) %>" data-cart-items="<%= JSON.stringify(cart.items.map(item => ({ id: item.product._id, quantity: item.quantity }))) %>" id="paypal-button-container"></div>
     </div>
   </div>
 
