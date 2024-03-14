@@ -1,5 +1,8 @@
-<% layout("layouts/boilerplate") %>
+<% layout("layouts/boilerplate") %> <% if (process.env.NODE_ENV !== "production") {%> <%console.log("DEVELOPMENT MODE"); %>
 <script src="https://www.paypal.com/sdk/js?client-id=Ace9664OgqqECcp2n2RicpH8zLxcJu3lKU0X8Spf-q1YkNoWUx3GvGwff89CRTzjCbYcvG6dCFSar8Zs"></script>
+<% } else {%>
+<script src="https://www.paypal.com/sdk/js?client-id=<%= process.env.PAYPAL_CLIENT_ID%>"></script>
+<% }%>
 
 <link rel="stylesheet" href="/css/cart.css" class="rel" />
 
