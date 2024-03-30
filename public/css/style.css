@@ -512,9 +512,11 @@ button.hamburger {
 
   .price {
     position: absolute;
-    top: 5px;
-    right: 8px;
-    color: #005c87;
+    top: 0px;
+    right: 0px;
+    color: #fff;
+    background-color: #005c87;
+    padding: 2px 5px;
     font-weight: bold;
     font-size: 14px;
   }
@@ -1341,4 +1343,44 @@ button.hamburger {
     margin-bottom: 40px;
     color: lightgray;
   }
+
+  /* Edit: product card design update - START */
+  .overlay {
+    display: flex;
+    bottom: 15px;
+    width: calc(100% - 30px);
+    left: 15px;
+  }
+
+  .prod-img {
+    height: 220px;
+    margin-bottom: 0px;
+    object-fit: unset;
+  }
+
+  .price {
+    background-color: #005c87;
+    color: #fff;
+    padding: 2px 5px;
+    right: 12px;
+    top: 0px;
+  }
+
+  .prod-name {
+    margin-top: 5px;
+    margin-bottom: 50px;
+  }
+
+  .col-6 {
+    position: relative;
+  }
+
+  .prod-container {
+    position: static;
+  }
+
+  .col-6:not(:first-child):not(:nth-child(2)) {
+    margin-top: 15px;
+  }
+  /* Edit: product card design update - END */
 }
