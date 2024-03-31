@@ -1,6 +1,7 @@
 const Product = require("../models/product"); // the products exports model
 const { cloudinary } = require("../cloudinary");
 const Cart = require("../models/cart");
+const Review = require("../models/review");
 
 module.exports.index = async (req, res) => {
   if (req.query.success) {
@@ -111,6 +112,9 @@ module.exports.deleteProduct = async (req, res) => {
     }
     // Find all carts containing the product to be deleted and remove the product from those carts
     await Cart.updateMany({ "items.product": id }, { $pull: { items: { product: id } } });
+
+    // Delete all reviews associated with this product
+    await Review.deleteMany({ product: id });
   }
   await Product.findByIdAndDelete(id);
   req.flash("success", "Successfully deleted product!");
