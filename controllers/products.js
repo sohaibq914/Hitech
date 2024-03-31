@@ -1,5 +1,6 @@
 const Product = require("../models/product"); // the products exports model
 const { cloudinary } = require("../cloudinary");
+const Cart = require("../models/cart");
 
 module.exports.index = async (req, res) => {
   if (req.query.success) {
