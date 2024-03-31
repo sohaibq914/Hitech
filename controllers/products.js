@@ -108,6 +108,8 @@ module.exports.deleteProduct = async (req, res) => {
         await cloudinary.uploader.destroy(image.filename);
       }
     }
+    // Find all carts containing the product to be deleted and remove the product from those carts
+    await Cart.updateMany({ "items.product": id }, { $pull: { items: { product: id } } });
   }
   await Product.findByIdAndDelete(id);
   req.flash("success", "Successfully deleted product!");
