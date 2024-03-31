@@ -114,7 +114,7 @@ module.exports.deleteProduct = async (req, res) => {
     await Cart.updateMany({ "items.product": id }, { $pull: { items: { product: id } } });
 
     // Delete all reviews associated with this product
-    await Review.deleteMany({ product: id });
+    await Review.deleteMany({ _id: { $in: product.reviews } });
   }
   await Product.findByIdAndDelete(id);
   req.flash("success", "Successfully deleted product!");
