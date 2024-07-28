@@ -18,4 +18,13 @@ const cartSchema = new Schema({
     },
   ],
 });
+
+// Add a default value for the items array
+cartSchema.pre("save", function (next) {
+  if (!this.items) {
+    this.items = [];
+  }
+  next();
+});
+
 module.exports = mongoose.model("Cart", cartSchema);

@@ -14,6 +14,16 @@ const UserSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Cart",
   },
+  googleId: String,
+  google_token: String,
+  // username is passport compliant
+  username: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true,
+  },
 });
 
 // adds a username and password field to the schema
