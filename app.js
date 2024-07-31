@@ -54,6 +54,15 @@ db.once("open", function () {
 const app = express();
 app.use(express.json()); // This line is crucial
 
+// middleware to enforce HTTPS
+app.use((req, res, next) => {
+  if (req.header("x-forwarded-proto") !== "https") {
+    res.redirect(`https://${req.header("host")}${req.url}`);
+  } else {
+    next();
+  }
+});
+
 const store = MongoStore.create({
   mongoUrl: dbUrl,
   touchAfter: 24 * 60 * 60, // every 24 hours
