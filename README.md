@@ -20,4 +20,4 @@
 
 ## Demo
 
-[Watch the Demo Video](docs/demo.mp4)
+[Watch the Demo Video](public/images/demo.mp4)
