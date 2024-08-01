@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const Cart = require("../models/cart");
 
 module.exports.renderRegister = (req, res) => {
   res.render("users/register");
@@ -7,7 +8,11 @@ module.exports.renderRegister = (req, res) => {
 module.exports.register = async (req, res, next) => {
   try {
     const { email, username, password } = req.body;
-    const user = new User({ email, username });
+
+    const newCart = new Cart();
+    await newCart.save();
+
+    const user = new User({ email, username, cart: newCart._id });
     const registeredUser = await User.register(user, password); // hash and salts the password and stores info in document
     req.login(registeredUser, (err) => {
       if (err) return next(err); // callback necessary when using login func, can't use async --- that's just how passport does this
