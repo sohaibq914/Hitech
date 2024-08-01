@@ -5,19 +5,23 @@
 ## Features
 
 - pagination
-- admin mode
+- admin view
 - google oauth
 - paypal integration
-- item email confirmation
+- email confirmation
 
 ## Technologies
 
 - HTML/CSS
-- EJS
 - Bootstrap
+- EJS
 - Node
 - MongoDB
 
-## Demo
+## Customer Demo
 
-![Project Demo](public/images/demo1.gif)
+![Customer demo](public/images/demo1.gif)
+
+## Admin Demo
+
+![Admin demo](public/images/demo2.gif)
