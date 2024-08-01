@@ -315,6 +315,10 @@ button.hamburger {
   margin-bottom: 20px;
 }
 
+.view-more-btn {
+  background-color: #005c87;
+}
+
 @media (min-width: 992px) {
   #paypal-button-container {
     /* navbar is relative bc styled by bootstrap */
