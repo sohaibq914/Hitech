@@ -1,6 +1,6 @@
 # Hitech Instrument
 
-![Company Logo](public/images/logo.png)
+<img src="public/images/logo.png" alt="Company Logo" width="200"/>
 
 ## Features
 - pagination
