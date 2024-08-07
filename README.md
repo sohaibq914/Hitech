@@ -1,4 +1,4 @@
-# Hitech Instrument
+# Hitech Instruments
 
 <img src="public/images/logo.png" alt="Company Logo" width="200"/>
 
