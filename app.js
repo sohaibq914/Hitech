@@ -55,6 +55,7 @@ const app = express();
 app.use(express.json()); // This line is crucial
 
 // middleware to enforce HTTPS
+/*
 if (process.env.NODE_ENV == "production") {
   app.use((req, res, next) => {
     if (req.header("x-forwarded-proto") !== "https") {
@@ -64,6 +65,7 @@ if (process.env.NODE_ENV == "production") {
     }
   });
 }
+  */
 
 const store = MongoStore.create({
   mongoUrl: dbUrl,
