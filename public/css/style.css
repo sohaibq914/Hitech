@@ -319,6 +319,11 @@ button.hamburger {
   background-color: #005c87;
 }
 
+.cart {
+  width: 28px; /* Set the width of the image */
+  height: auto; /* Maintain the aspect ratio */
+}
+
 @media (min-width: 992px) {
   #paypal-button-container {
     /* navbar is relative bc styled by bootstrap */
