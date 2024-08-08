@@ -324,6 +324,28 @@ button.hamburger {
   height: auto; /* Maintain the aspect ratio */
 }
 
+/* styles.css */
+.plain-link {
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from the parent element */
+  background: none; /* Remove background */
+  border: none; /* Remove border */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  font: inherit; /* Inherit font properties */
+  cursor: pointer; /* Change cursor to pointer */
+  outline: none; /* Remove focus outline */
+}
+
+/* Optional: Remove hover, focus, and active states */
+.plain-link:hover,
+.plain-link:focus,
+.plain-link:active {
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
 @media (min-width: 992px) {
   #paypal-button-container {
     /* navbar is relative bc styled by bootstrap */
