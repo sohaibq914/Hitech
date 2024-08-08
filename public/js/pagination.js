@@ -30,7 +30,7 @@ function generateProduct(product) {
     <p class="price">$${product.price}</p>
     <div class="overlay">
       <a class="plain-link" href="/products/${product._id}">
-        <i class="fa-solid fa-cart-shopping d-flex" style="color: white"> <span class="cart-text">View Product</span></i>
+        <i class="fa-solid fa-search d-flex" style="color: white"> <span class="cart-text">View Product</span></i>
       </a>
     </div>
   </div>

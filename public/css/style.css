@@ -335,6 +335,8 @@ button.hamburger {
   font: inherit; /* Inherit font properties */
   cursor: pointer; /* Change cursor to pointer */
   outline: none; /* Remove focus outline */
+  height: auto; /* Reset height */
+  padding-top: 8px;
 }
 
 /* Optional: Remove hover, focus, and active states */
