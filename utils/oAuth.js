@@ -6,8 +6,6 @@ exports.authUser = async (req, accessToken, refreshToken, profile, done) => {
   try {
     const email = profile.emails && profile.emails[0] && profile.emails[0].value;
     const username = email ? email.split("@")[0] : profile.id;
-    console.log("EMAIL", email);
-    console.log("USERNAME", username);
     if (!req.user) {
       // look for google user in db
       const googleUser = await User.findOne({ googleId: profile.id });

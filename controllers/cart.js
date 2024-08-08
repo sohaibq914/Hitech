@@ -11,25 +11,19 @@ module.exports.addProduct = async (req, res) => {
     req.flash("error", "Cannot find that product!");
     return res.redirect("/products");
   }
-  console.log("HIIII");
   let cart = await Cart.findOne({ _id: req.user.cart }).populate({
     path: "items.product", // populate the product
     populate: {
       path: "author", // populate the authors inside the product
     },
   });
-  console.log("AFTERRRR");
-  console.log("THIS IS CART", cart);
   if (!cart) {
-    console.log("BEFORE SAVING CART");
     cart = new Cart({ items: [] });
     await cart.save();
-    console.log("AFTER SAVING CART");
 
     const user = await User.findById(userId);
     user.cart = cart._id;
     await user.save();
-    console.log("AFTER SAVING USER");
   }
 
   const productIndex = cart.items.findIndex((item) => item.product.equals(product._id));
@@ -45,7 +39,6 @@ module.exports.addProduct = async (req, res) => {
     cart.items.push({ product: product._id, quantity: parseInt(quantity, 10) });
   }
   await cart.save();
-  console.log("AFTER SAVING CART", cart);
 
   req.flash("success", "Product added to cart successfully!");
   res.redirect("/cart");
@@ -58,8 +51,6 @@ module.exports.showCart = async (req, res) => {
       path: "author", // populate the authors inside the product
     },
   });
-
-  console.log("SHOOOW CART", cart);
 
   res.render("cart/show", { cart });
 };
