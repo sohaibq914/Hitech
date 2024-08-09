@@ -28,11 +28,7 @@ function generateProduct(product) {
       <img alt="" class="prod-img img-fluid" src="${product.images.length ? product.images[0].url : "https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"}" >
     </a>
     <p class="price">$${product.price}</p>
-    <div class="overlay">
-      <a class="plain-link" href="/products/${product._id}">
-        <i class="fa-solid fa-search d-flex" style="color: white"> <span class="cart-text">View Product</span></i>
-      </a>
-    </div>
+
   </div>
   <h1 class="prod-name">${product.name}</h1>
 </div>`;
