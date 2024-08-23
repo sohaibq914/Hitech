@@ -6,11 +6,11 @@ function redirectToExternalBrowser() {
       // Redirect to Chrome on Android
       window.location.href = "intent://www.hitechinstrument.us#Intent;scheme=https;package=com.android.chrome;end";
     } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
-      // Prompt iOS users to open in Safari
-      window.location.href = "https://www.hitechinstrument.us";
+      // Open link in Safari for iOS users
+      window.open("https://www.hitechinstrument.us", "_blank");
     } else {
       // Default fallback for other devices
-      alert("Please open this link in your external browser for better experience.");
+      window.location.href = "https://www.hitechinstrument.us";
     }
   }
 }
